@@ -137,7 +137,7 @@ widget.innerHTML = `
     <span id="chat-close">✕</span>
   </div>
   <div id="chat-messages">
-    <div class="chat-msg ai">Hi! this is a test.</div>
+    <div class="chat-msg ai">Hi! this is a test...</div>
   </div>
   <div id="chat-input-row">
     <input id="widget-input" type="text" placeholder="Type a message...">
