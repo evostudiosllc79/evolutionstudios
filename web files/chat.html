@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - Evolution Studios</title>
+</head>
+<body>
+
+<h1>Chat with our AI</h1>
+
+<div id="chat-container" style="max-width:600px; margin:auto; font-family:sans-serif;">
+  <div id="chat-box" style="height:400px; overflow-y:auto; border:1px solid #ccc; padding:10px; background:#111; color:#fff;"></div>
+  <div style="display:flex; margin-top:10px;">
+    <input id="chat-input" type="text" placeholder="Ask me anything..." 
+      style="flex:1; padding:10px; font-size:16px;">
+    <button onclick="sendMessage()" 
+      style="padding:10px 20px; background:#ff6600; color:white; border:none; cursor:pointer;">Send</button>
+  </div>
+</div>
+
+<script>
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const box = document.getElementById('chat-box');
+  const message = input.value.trim();
+  if (!message) return;
+
+  box.innerHTML += `<p><b>You:</b> ${message}</p>`;
+  input.value = '';
+
+  const response = await fetch('https://parallel-encyclopedia-break-value.trycloudflare.com   ', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'llama3.2',
+      messages: [{ role: 'user', content: message }],
+      stream: false
+    })
+  });
+
+  const data = await response.json();
+  box.innerHTML += `<p><b>AI:</b> ${data.message.content}</p>`;
+  box.scrollTop = box.scrollHeight;
+}
+
+document.getElementById('chat-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') sendMessage();
+});
+</script>
+
+</body>
+</html>
