@@ -176,7 +176,13 @@ async function widgetSend() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'llama3.2',
-        messages: [{ role: 'user', content: message }],
+        messages: [
+  {
+    role: 'system',
+    content: 'You are a helpful assistant for Evolution Studios, a web design and development company in Mesa, Arizona. Keep answers short and direct. When asked about timelines, give specific estimates like "3-5 days for a basic site" or "1-2 weeks for a custom build". When asked about pricing, say to visit the Get Started page. Always be friendly and professional.'
+  },
+  { role: 'user', content: message }
+],
         stream: false
       })
     });
