@@ -4,7 +4,7 @@ style.textContent = `
   #chat-bubble {
     position: fixed;
     bottom: 28px;
-    right: 28px;
+    left: 28px;
     width: 56px;
     height: 56px;
     background: #0db4c4;
@@ -30,7 +30,7 @@ style.textContent = `
   #chat-widget {
     position: fixed;
     bottom: 100px;
-    right: 28px;
+    left: 28px;
     width: 360px;
     height: 500px;
     background: white;
