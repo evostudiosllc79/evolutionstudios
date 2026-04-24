@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVY6RMLWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BLVY6RMLWH');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Web Snippets — Evolution Studios</title>
+<link rel="stylesheet" href="https://myfonts.neocities.org/fonts.css">
+<style>
+:root {
+  --bg-primary: #f6fbfc;
+  --bg-hero: #eaf7f9;
+  --text-dark: #1a2b30;
+  --text-mid: #3d5a62;
+  --text-light: #6b8a93;
+  --accent: #0db4c4;
+  --accent-dark: #0a95a3;
+  --accent-light: #d4f3f7;
+  --accent-glow: rgba(13, 180, 196, 0.15);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2eff2;
+  --shadow-sm: 0 1px 3px rgba(26, 43, 48, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 43, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 43, 48, 0.1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+.header h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header p {
+  font-size: 19px;
+  color: var(--text-mid);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Snippet Grid */
+.snippets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.snippet-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.snippet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.snippet-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--card-border);
+}
+.snippet-header h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.snippet-header p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.snippet-demo {
+  padding: 40px 28px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+
+/* Individual Snippet Styles */
+
+/* 1. Magnetic Button */
+.magnetic-btn {
+  padding: 16px 40px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(13, 180, 196, 0.3);
+}
+.magnetic-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(13, 180, 196, 0.4);
+}
+
+/* 2. Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  width: 280px;
+}
+.glass-card h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.glass-card p {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+/* 3. Floating Label Input */
+.float-field {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+.float-field input {
+  width: 100%;
+  padding: 20px 16px 8px;
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: var(--font-body);
+  outline: none;
+  background: var(--white);
+  transition: all 0.2s;
+}
+.float-field input:focus {
+  border-color: var(--card-border);
+  box-shadow: 
+    inset 0 2px 0 0 var(--accent),
+    inset 0 -2px 0 0 var(--accent);
+}
+.float-field label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-size: 15px;
+  color: var(--text-light);
+  pointer-events: none;
+  background: var(--white);
+  padding: 0 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.float-field input:focus + label,
+.float-field input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* 4. Toggle Switch */
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toggle {
+  position: relative;
+  width: 54px;
+  height: 28px;
+  background: #cbd5e0;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.toggle.active { background: var(--accent); }
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.toggle.active .toggle-knob { transform: translateX(26px); }
+.toggle-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+/* 5. Progress Bar */
+.progress-container {
+  width: 100%;
+  max-width: 300px;
+}
+.progress-bar-demo {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #06d6a0);
+  border-radius: 100px;
+  width: 65%;
+  transition: width 0.5s ease;
+}
+.progress-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+  text-align: center;
+}
+
+/* 6. Tooltip */
+.tooltip-trigger {
+  position: relative;
+  padding: 12px 24px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: var(--text-dark);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--text-dark);
+}
+.tooltip-trigger:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* 7. Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 8. Card Hover Effect */
+.hover-card {
+  width: 280px;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.hover-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--accent-light), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+.hover-card:hover::before {
+  opacity: 1;
+}
+.hover-card h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+.hover-card p {
+  font-size: 14px;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+}
+
+/* 9. Loading Spinner */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--card-border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 10. Skeleton Loader */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f7fafc 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+.skeleton-text {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+.skeleton-text:last-child {
+  width: 70%;
+  margin-bottom: 0;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 11. Accordion */
+.accordion {
+  width: 100%;
+  max-width: 350px;
+}
+.accordion-item {
+  border-bottom: 1px solid var(--card-border);
+}
+.accordion-header {
+  width: 100%;
+  padding: 16px 0;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+  transition: color 0.2s;
+}
+.accordion-header:hover { color: var(--accent); }
+.accordion-icon {
+  transition: transform 0.3s;
+}
+.accordion-item.open .accordion-icon { transform: rotate(45deg); }
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-item.open .accordion-content { max-height: 200px; }
+.accordion-body {
+  padding-bottom: 16px;
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+/* 12. Ripple Button */
+.ripple-btn {
+  position: relative;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246, 251, 252, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 239, 242, 0.6);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+.nav-logo svg { flex-shrink: 0; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--white) !important;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+/* Mobile nav toggle */
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-dark);
+  margin: 6px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .snippets-grid {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding: 60px 20px;
+  }
+}
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+  }
+</style>
+</head>
+<body>
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<!-- ===== NAV ===== -->
+<nav class="nav" id="mainNav">
+  <a href="/" class="nav-logo">
+    <!-- Logo mark -->
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#0db4c4"/>
+      <path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.5 16h7a4 4 0 010 8H8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    Evolution Studios
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="get-started.html" class="nav-cta">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<div class="container">
+  <div class="header">
+    <h1>Interactive <span class="highlight">Web Snippets</span></h1>
+    <p>A collection of modern UI components and effects you can add to your website. Click, hover, and interact with each one!</p>
+  </div>
+
+  <div class="snippets-grid">
+
+    <!-- 1. Magnetic Button -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Magnetic Button</h3>
+        <p>Eye-catching button with smooth hover effects and shadow animations</p>
+      </div>
+      <div class="snippet-demo">
+        <button class="magnetic-btn">Click Me</button>
+      </div>
+    </div>
+
+    <!-- 2. Glass Card -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Glassmorphism Card</h3>
+        <p>Modern frosted glass effect with backdrop blur for a premium feel</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="glass-card">
+          <h4>Glass Effect</h4>
+          <p>Beautiful translucent card with frosted glass styling</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Floating Label -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Floating Label Input</h3>
+        <p>Label animates up when focused, with Facebook-style top/bottom highlight</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="float-field">
+          <input type="text" id="demo1" placeholder=" ">
+          <label for="demo1">Your Email</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Toggle Switch -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Toggle Switch</h3>
+        <p>Smooth animated toggle for settings and preferences</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="toggle-wrapper">
+          <div class="toggle" onclick="this.classList.toggle('active')">
+            <div class="toggle-knob"></div>
+          </div>
+          <span class="toggle-label">Enable Notifications</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Progress Bar -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Progress Indicator</h3>
+        <p>Animated gradient progress bar for loading states</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="progress-container">
+          <div class="progress-bar-demo">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="progress-text">65% Complete</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Tooltip -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Hover Tooltip</h3>
+        <p>Contextual tooltips that appear on hover with smooth animations</p>
+      </div>
+      <div class="snippet-demo">
+        <button class="tooltip-trigger">
+          Hover Me
+          <div class="tooltip">This is a helpful tooltip!</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 7. Badge -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Status Badge</h3>
+        <p>Live status indicator with pulsing animation</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="badge">
+          <div class="badge-dot"></div>
+          Currently Online
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Hover Card -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Interactive Hover Card</h3>
+        <p>Card that lifts and glows on hover with gradient overlay</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="hover-card">
+          <h4>Hover Effect</h4>
+          <p>Try hovering over this card to see the magic happen</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Loading Spinner -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Loading Spinner</h3>
+        <p>Smooth rotating spinner for loading states</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- 10. Skeleton Loader -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Skeleton Loading</h3>
+        <p>Shimmer effect while content loads for better UX</p>
+      </div>
+      <div class="snippet-demo">
+        <div style="width: 280px;">
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Accordion -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Accordion Menu</h3>
+        <p>Expandable sections for FAQs and content organization</p>
+      </div>
+      <div class="snippet-demo">
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              What is this?
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                This is an interactive accordion that expands to show more content when clicked!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Ripple Button -->
+    <div class="snippet-card">
+      <div class="snippet-header">
+        <h3>Ripple Effect Button</h3>
+        <p>Material Design-style ripple animation on click</p>
+      </div>
+      <div class="snippet-demo">
+        <button class="ripple-btn" onclick="createRipple(event, this)">Click for Ripple</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Accordion toggle
+function toggleAccordion(button) {
+  const item = button.parentElement;
+  const wasOpen = item.classList.contains('open');
+  
+  // Close all
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  
+  // Open clicked if it wasn't open
+  if (!wasOpen) {
+    item.classList.add('open');
+  }
+}
+
+// Ripple effect
+function createRipple(event, button) {
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple');
+  
+  const rect = button.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
+  
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  
+  button.appendChild(ripple);
+  
+  setTimeout(() => ripple.remove(), 600);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVY6RMLWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BLVY6RMLWH');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile App Design Ideas & Examples — Evolution Studios</title>
+<link rel="stylesheet" href="https://myfonts.neocities.org/fonts.css">
+<style>
+
+/* ============ VARIABLES ============ */
+:root {
+  --bg-primary: #f6fbfc;
+  --bg-hero: #eaf7f9;
+  --text-dark: #1a2b30;
+  --text-mid: #3d5a62;
+  --text-light: #6b8a93;
+  --accent: #0db4c4;
+  --accent-dark: #0a95a3;
+  --accent-light: #d4f3f7;
+  --accent-glow: rgba(13, 180, 196, 0.15);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2eff2;
+  --shadow-sm: 0 1px 3px rgba(26, 43, 48, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 43, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 43, 48, 0.1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+/* ============ RESET ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246, 251, 252, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 239, 242, 0.6);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 15px; font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--white) !important;
+  font-weight: 600; font-size: 14px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span {
+  display: block; width: 24px; height: 2px; background: var(--text-dark);
+  margin: 6px 0; border-radius: 2px; transition: 0.3s;
+}
+
+/* ============ BREADCRUMB ============ */
+.breadcrumb {
+  padding: 110px 32px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb a { color: var(--text-mid); transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb svg { width: 14px; height: 14px; }
+.breadcrumb .current { color: var(--text-dark); font-weight: 500; }
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: 40px 32px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge svg { width: 14px; height: 14px; }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.page-hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero p {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+/* ============ PHONE HERO SHOWCASE ============ */
+.phone-showcase {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 40px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.phone-frame {
+  width: 240px;
+  height: 490px;
+  background: #1a2b30;
+  border-radius: 40px;
+  padding: 10px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+.phone-frame:hover { transform: translateY(-10px); }
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 20px;
+  background: #1a2b30;
+  border-radius: 10px;
+  z-index: 2;
+}
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #fff;
+  position: relative;
+}
+.phone-screen svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.phone-frame.tilt-left { transform: rotate(-6deg); }
+.phone-frame.tilt-left:hover { transform: rotate(-6deg) translateY(-10px); }
+.phone-frame.tilt-right { transform: rotate(6deg); }
+.phone-frame.tilt-right:hover { transform: rotate(6deg) translateY(-10px); }
+.phone-frame.center { z-index: 2; box-shadow: 0 30px 80px rgba(13, 180, 196, 0.3); }
+
+/* ============ PLATFORM CARDS ============ */
+.platforms-section {
+  padding: 40px 32px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.platforms-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.platforms-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.platform-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  transition: all 0.35s;
+  text-align: center;
+}
+.platform-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+.platform-icon {
+  width: 68px; height: 68px;
+  border-radius: 18px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+.platform-icon svg { width: 34px; height: 34px; color: var(--accent); }
+.platform-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.platform-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ FILTER TABS ============ */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 32px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.filter-tab {
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1.5px solid var(--card-border);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filter-tab.active {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+/* ============ APP EXAMPLES ============ */
+.apps-section {
+  padding: 40px 32px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.apps-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.apps-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.app-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.app-preview {
+  padding: 40px 20px 0;
+  background: linear-gradient(180deg, var(--bg-hero), var(--white));
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.mini-phone {
+  width: 160px;
+  height: 320px;
+  background: #1a2b30;
+  border-radius: 26px;
+  padding: 6px;
+  box-shadow: 0 15px 40px rgba(26, 43, 48, 0.2);
+  position: relative;
+  z-index: 1;
+}
+.mini-phone::before {
+  content: '';
+  position: absolute;
+  top: 14px; left: 50%;
+  transform: translateX(-50%);
+  width: 50px; height: 12px;
+  background: #1a2b30;
+  border-radius: 6px;
+  z-index: 2;
+}
+.mini-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+}
+.mini-screen svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.app-info {
+  padding: 28px 26px;
+}
+.app-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.app-info h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.app-info p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.app-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.feature-chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--bg-hero);
+  color: var(--text-mid);
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+/* ============ DESIGN ESSENTIALS ============ */
+.essentials-section {
+  padding: 80px 32px;
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+.essentials-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.essentials-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.essentials-inner .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+.essentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.essential-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+.essential-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.essential-icon {
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.essential-icon svg { width: 24px; height: 24px; color: var(--accent); }
+.essential-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+.essential-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ============ FEATURES COMPARISON ============ */
+.features-section {
+  padding: 80px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.features-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.features-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.feature-item {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: all 0.25s;
+}
+.feature-item:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+.feature-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon svg { width: 20px; height: 20px; color: var(--accent); }
+.feature-text h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+.feature-text p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 80px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-box {
+  background: linear-gradient(135deg, #0db4c4 0%, #0a95a3 50%, #078f8e 100%);
+  border-radius: var(--radius-lg);
+  padding: 60px 48px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+.cta-box p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--white);
+  color: var(--accent-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+}
+.footer-inner { max-width: 600px; margin: 0 auto; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.social-link {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.social-link:hover { background: var(--accent); transform: translateY(-2px); }
+.social-link:hover svg { color: var(--white); }
+.social-link svg { width: 20px; height: 20px; color: var(--accent); }
+.footer-copy { font-size: 13px; color: var(--text-light); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.app-card.hidden { display: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .platforms-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .apps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .essentials-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+  }
+  .apps-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+  .essentials-grid { grid-template-columns: 1fr; }
+  .phone-frame.tilt-left, .phone-frame.tilt-right { display: none; }
+  .breadcrumb, .page-hero, .phone-showcase, .filter-tabs,
+  .platforms-section, .apps-section, .essentials-section,
+  .features-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .cta-box { padding: 44px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#0db4c4"/>
+      <path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.5 16h7a4 4 0 010 8H8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    Evolution Studios
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="get-started.html">Pricing</a>
+    <a href="get-started.html" class="nav-cta">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+  <span class="current">Mobile App Design</span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="hero-badge">
+    <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="4"/></svg>
+    Mobile App Design
+  </div>
+  <h1>Apps That Fit in <span class="highlight">Every Pocket</span></h1>
+  <p>Beautiful, intuitive mobile app designs built for iOS and Android. Users spend hours a day on their phones — make sure they love spending time in yours.</p>
+</section>
+
+<!-- ===== PHONE HERO SHOWCASE ===== -->
+<div class="phone-showcase">
+
+  <!-- Left phone -->
+  <div class="phone-frame tilt-left">
+    <div class="phone-screen">
+      <svg viewBox="0 0 220 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="220" height="440" fill="#f8fbfc"/>
+        <!-- Status bar -->
+        <rect x="20" y="50" width="30" height="4" rx="1" fill="#1a2b30"/>
+        <rect x="175" y="50" width="25" height="4" rx="1" fill="#1a2b30"/>
+        <!-- Header -->
+        <rect x="20" y="75" width="90" height="12" rx="3" fill="#1a2b30"/>
+        <rect x="20" y="93" width="140" height="5" rx="1" fill="#6b8a93"/>
+        <!-- Search -->
+        <rect x="20" y="115" width="180" height="36" rx="18" fill="#fff" stroke="#e2eff2"/>
+        <circle cx="38" cy="133" r="5" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+        <rect x="52" y="130" width="60" height="6" rx="2" fill="#6b8a93"/>
+        <!-- Category pills -->
+        <rect x="20" y="165" width="50" height="22" rx="11" fill="#0db4c4"/>
+        <rect x="30" y="172" width="30" height="8" rx="2" fill="#fff"/>
+        <rect x="80" y="165" width="50" height="22" rx="11" fill="#fff" stroke="#e2eff2"/>
+        <rect x="90" y="172" width="30" height="8" rx="2" fill="#3d5a62"/>
+        <rect x="140" y="165" width="50" height="22" rx="11" fill="#fff" stroke="#e2eff2"/>
+        <rect x="150" y="172" width="30" height="8" rx="2" fill="#3d5a62"/>
+        <!-- Card 1 -->
+        <rect x="20" y="205" width="180" height="100" rx="14" fill="#fff"/>
+        <rect x="30" y="215" width="60" height="80" rx="10" fill="#d4f3f7"/>
+        <circle cx="60" cy="255" r="18" fill="#0db4c4"/>
+        <rect x="100" y="225" width="90" height="9" rx="2" fill="#1a2b30"/>
+        <rect x="100" y="242" width="70" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="100" y="260" width="80" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="100" y="278" width="40" height="15" rx="7" fill="#d6f7ee"/>
+        <rect x="108" y="282" width="24" height="7" rx="2" fill="#06d6a0"/>
+        <!-- Card 2 -->
+        <rect x="20" y="315" width="180" height="100" rx="14" fill="#fff"/>
+        <rect x="30" y="325" width="60" height="80" rx="10" fill="#fef3c7"/>
+        <circle cx="60" cy="365" r="18" fill="#f59e0b"/>
+        <rect x="100" y="335" width="90" height="9" rx="2" fill="#1a2b30"/>
+        <rect x="100" y="352" width="70" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="100" y="370" width="80" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="100" y="388" width="40" height="15" rx="7" fill="#fef3c7"/>
+        <rect x="108" y="392" width="24" height="7" rx="2" fill="#d97706"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Center phone -->
+  <div class="phone-frame center">
+    <div class="phone-screen">
+      <svg viewBox="0 0 220 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="centerBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0db4c4"/>
+            <stop offset="100%" stop-color="#06d6a0"/>
+          </linearGradient>
+        </defs>
+        <rect width="220" height="440" fill="url(#centerBg)"/>
+        <!-- Status bar -->
+        <rect x="20" y="50" width="30" height="4" rx="1" fill="#fff"/>
+        <rect x="175" y="50" width="25" height="4" rx="1" fill="#fff"/>
+        <!-- Header -->
+        <rect x="20" y="75" width="70" height="8" rx="2" fill="#fff" opacity="0.8"/>
+        <rect x="20" y="92" width="120" height="14" rx="3" fill="#fff"/>
+        <!-- Balance card -->
+        <rect x="20" y="130" width="180" height="110" rx="18" fill="#fff" opacity="0.15"/>
+        <rect x="35" y="150" width="70" height="6" rx="2" fill="#fff" opacity="0.7"/>
+        <rect x="35" y="164" width="110" height="20" rx="3" fill="#fff"/>
+        <rect x="35" y="196" width="50" height="22" rx="11" fill="#fff"/>
+        <rect x="48" y="203" width="24" height="8" rx="2" fill="#0db4c4"/>
+        <rect x="95" y="196" width="50" height="22" rx="11" fill="#fff" opacity="0.3"/>
+        <rect x="108" y="203" width="24" height="8" rx="2" fill="#fff"/>
+        <!-- List -->
+        <rect x="20" y="260" width="180" height="160" rx="18" fill="#fff"/>
+        <rect x="35" y="275" width="80" height="10" rx="2" fill="#1a2b30"/>
+        <circle cx="45" cy="310" r="12" fill="#d4f3f7"/>
+        <rect x="40" y="306" width="10" height="8" rx="1" fill="#0db4c4"/>
+        <rect x="65" y="302" width="70" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="65" y="314" width="50" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="160" y="303" width="30" height="8" rx="2" fill="#1a2b30"/>
+        <circle cx="45" cy="345" r="12" fill="#d6f7ee"/>
+        <rect x="42" y="340" width="6" height="10" rx="1" fill="#06d6a0"/>
+        <rect x="65" y="338" width="70" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="65" y="350" width="50" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="160" y="339" width="30" height="8" rx="2" fill="#06d6a0"/>
+        <circle cx="45" cy="380" r="12" fill="#fef3c7"/>
+        <rect x="40" y="376" width="10" height="8" rx="1" fill="#f59e0b"/>
+        <rect x="65" y="373" width="70" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="65" y="385" width="50" height="5" rx="1" fill="#6b8a93"/>
+        <rect x="160" y="374" width="30" height="8" rx="2" fill="#1a2b30"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Right phone -->
+  <div class="phone-frame tilt-right">
+    <div class="phone-screen">
+      <svg viewBox="0 0 220 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="220" height="440" fill="#fff"/>
+        <!-- Status bar -->
+        <rect x="20" y="50" width="30" height="4" rx="1" fill="#1a2b30"/>
+        <rect x="175" y="50" width="25" height="4" rx="1" fill="#1a2b30"/>
+        <!-- Profile header -->
+        <circle cx="110" cy="110" r="40" fill="#d4f3f7"/>
+        <circle cx="110" cy="100" r="14" fill="#0db4c4"/>
+        <path d="M85 130 Q110 145 135 130" fill="#0db4c4"/>
+        <rect x="70" y="160" width="80" height="12" rx="3" fill="#1a2b30"/>
+        <rect x="85" y="180" width="50" height="6" rx="2" fill="#6b8a93"/>
+        <!-- Stats row -->
+        <rect x="20" y="205" width="180" height="60" rx="14" fill="#f6fbfc"/>
+        <rect x="40" y="218" width="30" height="14" rx="3" fill="#1a2b30"/>
+        <rect x="38" y="238" width="34" height="5" rx="1" fill="#6b8a93"/>
+        <line x1="82" y1="220" x2="82" y2="250" stroke="#e2eff2"/>
+        <rect x="95" y="218" width="30" height="14" rx="3" fill="#0db4c4"/>
+        <rect x="93" y="238" width="34" height="5" rx="1" fill="#6b8a93"/>
+        <line x1="137" y1="220" x2="137" y2="250" stroke="#e2eff2"/>
+        <rect x="150" y="218" width="30" height="14" rx="3" fill="#1a2b30"/>
+        <rect x="148" y="238" width="34" height="5" rx="1" fill="#6b8a93"/>
+        <!-- Menu rows -->
+        <rect x="20" y="285" width="180" height="40" rx="12" fill="#fff" stroke="#e2eff2"/>
+        <circle cx="40" cy="305" r="10" fill="#d4f3f7"/>
+        <rect x="60" y="301" width="70" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="180" y="303" width="8" height="4" rx="1" fill="#6b8a93"/>
+        <rect x="20" y="335" width="180" height="40" rx="12" fill="#fff" stroke="#e2eff2"/>
+        <circle cx="40" cy="355" r="10" fill="#d6f7ee"/>
+        <rect x="60" y="351" width="80" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="180" y="353" width="8" height="4" rx="1" fill="#6b8a93"/>
+        <rect x="20" y="385" width="180" height="40" rx="12" fill="#fff" stroke="#e2eff2"/>
+        <circle cx="40" cy="405" r="10" fill="#fef3c7"/>
+        <rect x="60" y="401" width="60" height="7" rx="2" fill="#1a2b30"/>
+        <rect x="180" y="403" width="8" height="4" rx="1" fill="#6b8a93"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== PLATFORMS ===== -->
+<section class="platforms-section">
+  <div class="section-label">Platforms</div>
+  <h2>Designed for Every Device</h2>
+  <p class="section-desc">Whether you're launching on iOS, Android, or both, I design native-feeling apps that follow platform conventions while keeping your brand consistent.</p>
+
+  <div class="platforms-grid">
+
+    <div class="platform-card">
+      <div class="platform-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09M12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+        </svg>
+      </div>
+      <h3>iOS</h3>
+      <p>Following Apple's Human Interface Guidelines for a native feel. iPhone and iPad optimized.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.523 15.34c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96m-11.046 0c-.53 0-.96-.43-.96-.96s.43-.96.96-.96.96.43.96.96-.43.96-.96.96m11.391-6.02l1.92-3.328a.4.4 0 00-.146-.546.4.4 0 00-.546.146l-1.94 3.36c-1.484-.677-3.15-1.052-4.902-1.052-1.752 0-3.418.375-4.902 1.052l-1.94-3.36a.4.4 0 00-.546-.146.4.4 0 00-.146.546l1.92 3.328C3.31 10.84 1.03 13.48 1 16.5h22c-.03-3.02-2.31-5.66-5.132-7.18"/>
+        </svg>
+      </div>
+      <h3>Android</h3>
+      <p>Built to Material Design standards. Looks and feels right on every Android phone or tablet.</p>
+    </div>
+
+    <div class="platform-card">
+      <div class="platform-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="3"/>
+          <line x1="12" y1="18" x2="12.01" y2="18"/>
+          <path d="M9 6h6"/>
+        </svg>
+      </div>
+      <h3>Cross-Platform</h3>
+      <p>One design system, two platforms. Consistent brand experience whether users are on iPhone or Android.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FILTER TABS ===== -->
+<div class="filter-tabs">
+  <button class="filter-tab active" data-filter="all">All Apps</button>
+  <button class="filter-tab" data-filter="fitness">Fitness</button>
+  <button class="filter-tab" data-filter="finance">Finance</button>
+  <button class="filter-tab" data-filter="social">Social</button>
+  <button class="filter-tab" data-filter="food">Food &amp; Delivery</button>
+  <button class="filter-tab" data-filter="productivity">Productivity</button>
+</div>
+
+<!-- ===== APP EXAMPLES ===== -->
+<section class="apps-section">
+  <div class="section-label">App Concepts</div>
+  <h2>Ideas for Your App</h2>
+  <p class="section-desc">From fitness trackers to food delivery, here are some app concepts that can spark your vision. Every app I design is tailored to your specific needs.</p>
+
+  <div class="apps-grid">
+
+    <!-- Fitness App -->
+    <div class="app-card" data-category="fitness">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="fitBg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#06d6a0"/>
+                  <stop offset="100%" stop-color="#0db4c4"/>
+                </linearGradient>
+              </defs>
+              <rect width="148" height="296" fill="url(#fitBg)"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#fff"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#fff"/>
+              <!-- Greeting -->
+              <rect x="14" y="55" width="50" height="7" rx="2" fill="#fff" opacity="0.7"/>
+              <rect x="14" y="68" width="80" height="10" rx="2" fill="#fff"/>
+              <!-- Ring progress -->
+              <circle cx="74" cy="130" r="40" fill="none" stroke="#fff" stroke-width="8" opacity="0.3"/>
+              <circle cx="74" cy="130" r="40" fill="none" stroke="#fff" stroke-width="8"
+                      stroke-dasharray="180 70" stroke-linecap="round" transform="rotate(-90 74 130)"/>
+              <rect x="60" y="123" width="28" height="9" rx="2" fill="#fff"/>
+              <rect x="64" y="137" width="20" height="5" rx="1" fill="#fff" opacity="0.8"/>
+              <!-- Stats cards -->
+              <rect x="14" y="190" width="58" height="50" rx="10" fill="#fff"/>
+              <rect x="22" y="198" width="20" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="22" y="210" width="32" height="8" rx="2" fill="#1a2b30"/>
+              <rect x="22" y="223" width="40" height="5" rx="1" fill="#06d6a0"/>
+              <rect x="76" y="190" width="58" height="50" rx="10" fill="#fff"/>
+              <rect x="84" y="198" width="20" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="84" y="210" width="32" height="8" rx="2" fill="#1a2b30"/>
+              <rect x="84" y="223" width="40" height="5" rx="1" fill="#0db4c4"/>
+              <!-- Bottom nav -->
+              <rect x="14" y="260" width="120" height="26" rx="13" fill="#fff"/>
+              <circle cx="34" cy="273" r="4" fill="#06d6a0"/>
+              <circle cx="64" cy="273" r="4" fill="#6b8a93" opacity="0.4"/>
+              <circle cx="94" cy="273" r="4" fill="#6b8a93" opacity="0.4"/>
+              <circle cx="124" cy="273" r="4" fill="#6b8a93" opacity="0.4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Fitness</span>
+        <h3>Workout Tracker</h3>
+        <p>Motivating fitness apps with rings, goals, and streaks that keep users coming back every day.</p>
+        <div class="app-features">
+          <span class="feature-chip">Goal tracking</span>
+          <span class="feature-chip">Workout logs</span>
+          <span class="feature-chip">Progress stats</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance App -->
+    <div class="app-card" data-category="finance">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="148" height="296" fill="#1a2b30"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#fff"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#fff"/>
+              <!-- Header -->
+              <rect x="14" y="55" width="60" height="6" rx="2" fill="#fff" opacity="0.6"/>
+              <rect x="14" y="68" width="100" height="14" rx="3" fill="#fff"/>
+              <!-- Big balance -->
+              <rect x="14" y="100" width="40" height="5" rx="1" fill="#fff" opacity="0.5"/>
+              <rect x="14" y="112" width="90" height="22" rx="3" fill="#06d6a0"/>
+              <rect x="14" y="142" width="50" height="16" rx="8" fill="#06d6a0" opacity="0.2"/>
+              <rect x="22" y="147" width="34" height="6" rx="1" fill="#06d6a0"/>
+              <!-- Chart -->
+              <path d="M14 200 L30 190 L46 195 L62 175 L78 180 L94 160 L110 170 L126 150 L134 155"
+                    stroke="#06d6a0" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M14 200 L30 190 L46 195 L62 175 L78 180 L94 160 L110 170 L126 150 L134 155 L134 210 L14 210 Z"
+                    fill="#06d6a0" opacity="0.2"/>
+              <!-- Transactions -->
+              <rect x="14" y="225" width="120" height="55" rx="10" fill="#2a3d44"/>
+              <circle cx="28" cy="240" r="8" fill="#0db4c4" opacity="0.3"/>
+              <rect x="40" y="236" width="40" height="5" rx="1" fill="#fff"/>
+              <rect x="40" y="245" width="28" height="4" rx="1" fill="#fff" opacity="0.5"/>
+              <rect x="110" y="237" width="20" height="6" rx="1" fill="#06d6a0"/>
+              <circle cx="28" cy="265" r="8" fill="#f59e0b" opacity="0.3"/>
+              <rect x="40" y="261" width="50" height="5" rx="1" fill="#fff"/>
+              <rect x="40" y="270" width="30" height="4" rx="1" fill="#fff" opacity="0.5"/>
+              <rect x="108" y="262" width="22" height="6" rx="1" fill="#ef4444"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Finance</span>
+        <h3>Banking &amp; Budgeting</h3>
+        <p>Clean, secure-feeling finance apps with clear charts, transaction history, and budget tracking.</p>
+        <div class="app-features">
+          <span class="feature-chip">Transactions</span>
+          <span class="feature-chip">Budgets</span>
+          <span class="feature-chip">Insights</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social App -->
+    <div class="app-card" data-category="social">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="148" height="296" fill="#fff"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#1a2b30"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#1a2b30"/>
+              <!-- Header -->
+              <rect x="14" y="55" width="55" height="10" rx="2" fill="#1a2b30"/>
+              <circle cx="125" cy="60" r="8" fill="#d4f3f7"/>
+              <!-- Stories -->
+              <circle cx="25" cy="90" r="13" fill="none" stroke="#0db4c4" stroke-width="2"/>
+              <circle cx="25" cy="90" r="10" fill="#d4f3f7"/>
+              <circle cx="55" cy="90" r="13" fill="none" stroke="#0db4c4" stroke-width="2"/>
+              <circle cx="55" cy="90" r="10" fill="#fef3c7"/>
+              <circle cx="85" cy="90" r="13" fill="none" stroke="#e2eff2" stroke-width="2"/>
+              <circle cx="85" cy="90" r="10" fill="#d6f7ee"/>
+              <circle cx="115" cy="90" r="13" fill="none" stroke="#e2eff2" stroke-width="2"/>
+              <circle cx="115" cy="90" r="10" fill="#fce7f3"/>
+              <!-- Post 1 -->
+              <circle cx="24" cy="130" r="10" fill="#0db4c4"/>
+              <rect x="40" y="125" width="50" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="40" y="134" width="40" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="14" y="150" width="120" height="70" rx="8" fill="#d4f3f7"/>
+              <circle cx="74" cy="185" r="15" fill="#0db4c4" opacity="0.5"/>
+              <!-- Actions -->
+              <path d="M20 230 c0 -2 3 -5 5 -5 c2 0 3 1 3 3 c0 2 -8 7 -8 7" fill="#ef4444"/>
+              <rect x="36" y="228" width="10" height="4" rx="1" fill="#1a2b30"/>
+              <circle cx="60" cy="231" r="4" fill="none" stroke="#1a2b30" stroke-width="1.5"/>
+              <rect x="70" y="228" width="10" height="4" rx="1" fill="#1a2b30"/>
+              <!-- Post 2 -->
+              <circle cx="24" cy="260" r="10" fill="#f59e0b"/>
+              <rect x="40" y="255" width="50" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="40" y="264" width="40" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="14" y="280" width="120" height="14" rx="4" fill="#f5f5f5"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Social</span>
+        <h3>Social Feed</h3>
+        <p>Engaging social apps with stories, feeds, and interactions designed to keep the community active.</p>
+        <div class="app-features">
+          <span class="feature-chip">Feed &amp; stories</span>
+          <span class="feature-chip">Messaging</span>
+          <span class="feature-chip">Profiles</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Food Delivery -->
+    <div class="app-card" data-category="food">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="148" height="296" fill="#fef7ed"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#1a2b30"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#1a2b30"/>
+              <!-- Location bar -->
+              <rect x="14" y="55" width="30" height="4" rx="1" fill="#92400e"/>
+              <rect x="14" y="65" width="80" height="7" rx="2" fill="#1a2b30"/>
+              <!-- Search -->
+              <rect x="14" y="85" width="120" height="28" rx="14" fill="#fff"/>
+              <circle cx="28" cy="99" r="4" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+              <rect x="40" y="96" width="50" height="5" rx="1" fill="#6b8a93"/>
+              <!-- Categories -->
+              <circle cx="28" cy="138" r="16" fill="#c94a4a"/>
+              <rect x="24" y="134" width="8" height="8" rx="1" fill="#fff"/>
+              <rect x="14" y="158" width="28" height="4" rx="1" fill="#1a2b30"/>
+              <circle cx="60" cy="138" r="16" fill="#f59e0b"/>
+              <rect x="46" y="158" width="28" height="4" rx="1" fill="#1a2b30"/>
+              <circle cx="92" cy="138" r="16" fill="#06d6a0"/>
+              <rect x="78" y="158" width="28" height="4" rx="1" fill="#1a2b30"/>
+              <circle cx="124" cy="138" r="16" fill="#8b5cf6"/>
+              <rect x="110" y="158" width="28" height="4" rx="1" fill="#1a2b30"/>
+              <!-- Restaurant cards -->
+              <rect x="14" y="185" width="120" height="48" rx="10" fill="#fff"/>
+              <rect x="22" y="193" width="36" height="32" rx="6" fill="#fed7aa"/>
+              <circle cx="40" cy="209" r="10" fill="#c94a4a"/>
+              <rect x="66" y="198" width="50" height="6" rx="1" fill="#1a2b30"/>
+              <rect x="66" y="210" width="30" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="66" y="220" width="20" height="8" rx="4" fill="#fef3c7"/>
+              <rect x="14" y="240" width="120" height="48" rx="10" fill="#fff"/>
+              <rect x="22" y="248" width="36" height="32" rx="6" fill="#d4f3f7"/>
+              <circle cx="40" cy="264" r="10" fill="#0db4c4"/>
+              <rect x="66" y="253" width="50" height="6" rx="1" fill="#1a2b30"/>
+              <rect x="66" y="265" width="30" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="66" y="275" width="20" height="8" rx="4" fill="#d6f7ee"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Food</span>
+        <h3>Food Delivery</h3>
+        <p>Appetizing food apps with mouth-watering menus, quick ordering, and live delivery tracking.</p>
+        <div class="app-features">
+          <span class="feature-chip">Menu browse</span>
+          <span class="feature-chip">Cart &amp; checkout</span>
+          <span class="feature-chip">Order tracking</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Productivity / To-Do -->
+    <div class="app-card" data-category="productivity">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="148" height="296" fill="#f8fbfc"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#1a2b30"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#1a2b30"/>
+              <!-- Header -->
+              <rect x="14" y="55" width="45" height="6" rx="2" fill="#6b8a93"/>
+              <rect x="14" y="68" width="75" height="12" rx="3" fill="#1a2b30"/>
+              <circle cx="124" cy="73" r="10" fill="#0db4c4"/>
+              <path d="M120 73 L127 73 M123 70 L123 76" stroke="#fff" stroke-width="1.5"/>
+              <!-- Progress -->
+              <rect x="14" y="98" width="120" height="50" rx="12" fill="#0db4c4"/>
+              <rect x="24" y="110" width="50" height="6" rx="2" fill="#fff" opacity="0.8"/>
+              <rect x="24" y="122" width="30" height="12" rx="3" fill="#fff"/>
+              <rect x="24" y="140" width="80" height="4" rx="2" fill="#fff" opacity="0.3"/>
+              <rect x="24" y="140" width="50" height="4" rx="2" fill="#fff"/>
+              <!-- Task list -->
+              <rect x="14" y="160" width="55" height="6" rx="2" fill="#1a2b30"/>
+              <!-- Task 1 - completed -->
+              <rect x="14" y="178" width="120" height="26" rx="8" fill="#fff"/>
+              <circle cx="28" cy="191" r="7" fill="#06d6a0"/>
+              <path d="M25 191 l2 2 l4 -4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <rect x="42" y="187" width="60" height="5" rx="1" fill="#6b8a93" opacity="0.6"/>
+              <rect x="42" y="195" width="30" height="3" rx="1" fill="#6b8a93" opacity="0.4"/>
+              <!-- Task 2 -->
+              <rect x="14" y="210" width="120" height="26" rx="8" fill="#fff"/>
+              <circle cx="28" cy="223" r="7" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+              <rect x="42" y="219" width="70" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="42" y="227" width="40" height="3" rx="1" fill="#6b8a93"/>
+              <!-- Task 3 -->
+              <rect x="14" y="242" width="120" height="26" rx="8" fill="#fff"/>
+              <circle cx="28" cy="255" r="7" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+              <rect x="42" y="251" width="55" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="42" y="259" width="35" height="3" rx="1" fill="#6b8a93"/>
+              <!-- Task 4 -->
+              <rect x="14" y="274" width="120" height="18" rx="8" fill="#fff"/>
+              <circle cx="28" cy="283" r="7" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+              <rect x="42" y="280" width="60" height="5" rx="1" fill="#1a2b30"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Productivity</span>
+        <h3>Task &amp; Habit Tracker</h3>
+        <p>Clean productivity apps that help users stay organized without adding to their cognitive load.</p>
+        <div class="app-features">
+          <span class="feature-chip">To-do lists</span>
+          <span class="feature-chip">Reminders</span>
+          <span class="feature-chip">Progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meditation / Wellness -->
+    <div class="app-card" data-category="fitness">
+      <div class="app-preview">
+        <div class="mini-phone">
+          <div class="mini-screen">
+            <svg viewBox="0 0 148 296" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="medBg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8b5cf6"/>
+                  <stop offset="100%" stop-color="#6366f1"/>
+                </linearGradient>
+              </defs>
+              <rect width="148" height="296" fill="url(#medBg)"/>
+              <rect x="14" y="38" width="20" height="3" rx="1" fill="#fff"/>
+              <rect x="118" y="38" width="16" height="3" rx="1" fill="#fff"/>
+              <!-- Greeting -->
+              <rect x="14" y="55" width="60" height="6" rx="2" fill="#fff" opacity="0.7"/>
+              <rect x="14" y="67" width="90" height="12" rx="3" fill="#fff"/>
+              <!-- Featured meditation -->
+              <rect x="14" y="95" width="120" height="90" rx="14" fill="#fff" opacity="0.2"/>
+              <circle cx="74" cy="130" r="22" fill="#fff" opacity="0.3"/>
+              <path d="M69 122 L69 138 L82 130 Z" fill="#fff"/>
+              <rect x="30" y="162" width="88" height="6" rx="2" fill="#fff"/>
+              <rect x="46" y="173" width="56" height="4" rx="1" fill="#fff" opacity="0.7"/>
+              <!-- Category title -->
+              <rect x="14" y="200" width="60" height="6" rx="2" fill="#fff"/>
+              <!-- Category cards -->
+              <rect x="14" y="218" width="58" height="62" rx="10" fill="#fff"/>
+              <circle cx="43" cy="238" r="10" fill="#8b5cf6" opacity="0.2"/>
+              <rect x="22" y="257" width="40" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="22" y="267" width="28" height="4" rx="1" fill="#6b8a93"/>
+              <rect x="76" y="218" width="58" height="62" rx="10" fill="#fff"/>
+              <circle cx="105" cy="238" r="10" fill="#06d6a0" opacity="0.2"/>
+              <rect x="84" y="257" width="40" height="5" rx="1" fill="#1a2b30"/>
+              <rect x="84" y="267" width="28" height="4" rx="1" fill="#6b8a93"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="app-info">
+        <span class="app-tag">Wellness</span>
+        <h3>Meditation &amp; Wellness</h3>
+        <p>Calming wellness apps with guided sessions, mood tracking, and mindfulness features.</p>
+        <div class="app-features">
+          <span class="feature-chip">Audio sessions</span>
+          <span class="feature-chip">Mood tracking</span>
+          <span class="feature-chip">Daily streaks</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== DESIGN ESSENTIALS ===== -->
+<section class="essentials-section">
+  <div class="essentials-inner">
+    <div class="section-label" style="justify-content:center;">Design Essentials</div>
+    <h2>What Makes a Great App</h2>
+    <p class="section-desc">Mobile users are picky — they delete apps fast. Here's what I focus on to make sure yours sticks around.</p>
+
+    <div class="essentials-grid">
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Fast Onboarding</h3>
+        <p>First impressions matter. I design onboarding flows that show value immediately without requiring a 20-step setup.</p>
+      </div>
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+            <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+          </svg>
+        </div>
+        <h3>Thumb-Friendly Zones</h3>
+        <p>Important actions are placed where thumbs can easily reach. Designed for one-handed use on large screens.</p>
+      </div>
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+        </div>
+        <h3>Minimal Clutter</h3>
+        <p>Small screens demand focus. I strip away everything non-essential so users can act on what matters most.</p>
+      </div>
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3>Fast Performance</h3>
+        <p>Designs are optimized for quick load times. Users abandon apps that take more than a few seconds to respond.</p>
+      </div>
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+          </svg>
+        </div>
+        <h3>Smart Notifications</h3>
+        <p>Push notifications that inform without annoying. Users stay engaged without feeling spammed.</p>
+      </div>
+
+      <div class="essential-card">
+        <div class="essential-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <h3>Offline-First</h3>
+        <p>Apps that work even without a connection. Users can keep using key features on planes, trains, or dead zones.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section">
+  <div class="section-label">Features You Can Add</div>
+  <h2>Build the App You Envision</h2>
+  <p class="section-desc">Every app is different. Here are some common features I can design and spec out for your development team.</p>
+
+  <div class="features-grid">
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>User Accounts &amp; Profiles</h4>
+        <p>Sign-up, login, profile management, and account settings. Social login included.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>In-App Messaging</h4>
+        <p>Real-time chat between users or with support. Conversations, read receipts, and media sharing.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>In-App Purchases</h4>
+        <p>Subscription tiers, one-time purchases, and secure payments via Apple Pay, Google Pay, or Stripe.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Maps &amp; Location</h4>
+        <p>Integrated maps, GPS tracking, geofencing, and location-based features.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Media &amp; Video</h4>
+        <p>Photo galleries, video playback, camera integration, and media upload/sharing.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Push Notifications</h4>
+        <p>Targeted notifications to bring users back. Schedule, segment, and personalize messages.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Booking &amp; Scheduling</h4>
+        <p>Calendar integration, appointment booking, and reminder systems for service apps.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Analytics Dashboard</h4>
+        <p>Visualize user data, track progress, and display stats with charts and graphs.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Dark Mode</h4>
+        <p>Automatic or manual dark mode support. Easy on the eyes and saves battery on OLED screens.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Search &amp; Filters</h4>
+        <p>Smart search with filters, sorting, and recent searches. Help users find exactly what they need.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Shopping &amp; Cart</h4>
+        <p>Product browsing, cart management, wishlist, and order history for e-commerce apps.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Accessibility Support</h4>
+        <p>VoiceOver, TalkBack, Dynamic Type, and high contrast modes built in from day one.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Have an App Idea?</h2>
+    <p>Let's turn your concept into a beautifully designed app. Request a free sample screen to see my work first.</p>
+    <a href="get-started.html" class="btn-white">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-socials">
+      <a href="mailto:evostudiosllc@gmail.com" class="social-link" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Evolution Studios LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile toggle
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+// Filter tabs
+const tabs = document.querySelectorAll('.filter-tab');
+const cards = document.querySelectorAll('.app-card');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

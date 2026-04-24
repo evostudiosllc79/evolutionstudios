@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVY6RMLWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BLVY6RMLWH');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI/UX Design Ideas & Examples — Evolution Studios</title>
+<link rel="stylesheet" href="https://myfonts.neocities.org/fonts.css">
+<style>
+
+/* ============ VARIABLES ============ */
+:root {
+  --bg-primary: #f6fbfc;
+  --bg-hero: #eaf7f9;
+  --text-dark: #1a2b30;
+  --text-mid: #3d5a62;
+  --text-light: #6b8a93;
+  --accent: #0db4c4;
+  --accent-dark: #0a95a3;
+  --accent-light: #d4f3f7;
+  --accent-glow: rgba(13, 180, 196, 0.15);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2eff2;
+  --shadow-sm: 0 1px 3px rgba(26, 43, 48, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 43, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 43, 48, 0.1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246, 251, 252, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 239, 242, 0.6);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 15px; font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--white) !important;
+  font-weight: 600; font-size: 14px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span {
+  display: block; width: 24px; height: 2px; background: var(--text-dark);
+  margin: 6px 0; border-radius: 2px; transition: 0.3s;
+}
+
+/* ============ BREADCRUMB ============ */
+.breadcrumb {
+  padding: 110px 32px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb a { color: var(--text-mid); transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb svg { width: 14px; height: 14px; }
+.breadcrumb .current { color: var(--text-dark); font-weight: 500; }
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: 40px 32px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge svg { width: 14px; height: 14px; }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.page-hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero p {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+/* ============ UI SHOWCASE (DASHBOARD PREVIEW) ============ */
+.ui-showcase {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+.showcase-frame {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+.showcase-frame::before {
+  content: '';
+  display: block;
+  height: 36px;
+  background: #f0f5f7;
+  border-bottom: 1px solid var(--card-border);
+}
+.showcase-dots {
+  position: absolute;
+  top: 12px; left: 16px;
+  display: flex;
+  gap: 6px;
+}
+.showcase-dots span {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+.showcase-dots span:nth-child(1) { background: #ff5f57; }
+.showcase-dots span:nth-child(2) { background: #febc2e; }
+.showcase-dots span:nth-child(3) { background: #28c840; }
+.showcase-frame svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ FILTER TABS ============ */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 32px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.filter-tab {
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1.5px solid var(--card-border);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filter-tab.active {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+/* ============ INTERFACE GRID ============ */
+.interface-section {
+  padding: 40px 32px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.interface-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.interface-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.interface-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.interface-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.interface-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.interface-preview {
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  background: #f0f5f7;
+}
+.interface-preview svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.interface-info {
+  padding: 24px 26px 28px;
+}
+.interface-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.interface-info h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.interface-info p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ============ PRINCIPLES ============ */
+.principles-section {
+  padding: 80px 32px;
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+.principles-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.principles-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.principles-inner .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.principle-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s;
+}
+.principle-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.principle-number {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 60px;
+}
+.principle-text h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+.principle-text p {
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ============ DELIVERABLES ============ */
+.deliverables-section {
+  padding: 80px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.deliverables-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.deliverables-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.deliverable {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 28px 26px;
+  transition: all 0.25s;
+}
+.deliverable:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.deliverable-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.deliverable-icon svg { width: 22px; height: 22px; color: var(--accent); }
+.deliverable h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+.deliverable p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ============ PROCESS ============ */
+.process-section {
+  padding: 80px 32px;
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+.process-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.process-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.process-step {
+  display: flex;
+  gap: 28px;
+  padding: 28px 32px;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  align-items: flex-start;
+  transition: all 0.3s;
+}
+.process-step:hover {
+  transform: translateX(6px);
+  border-color: var(--accent);
+}
+.process-step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.process-step-content h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.process-step-content p {
+  color: var(--text-mid);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 80px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-box {
+  background: linear-gradient(135deg, #0db4c4 0%, #0a95a3 50%, #078f8e 100%);
+  border-radius: var(--radius-lg);
+  padding: 60px 48px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+.cta-box p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--white);
+  color: var(--accent-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+}
+.footer-inner { max-width: 600px; margin: 0 auto; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.social-link {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.social-link:hover { background: var(--accent); transform: translateY(-2px); }
+.social-link:hover svg { color: var(--white); }
+.social-link svg { width: 20px; height: 20px; color: var(--accent); }
+.footer-copy { font-size: 13px; color: var(--text-light); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.interface-card.hidden { display: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .interface-grid { grid-template-columns: repeat(2, 1fr); }
+  .principles-grid { grid-template-columns: 1fr; }
+  .deliverables-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+  }
+  .interface-grid { grid-template-columns: 1fr; }
+  .deliverables-grid { grid-template-columns: 1fr; }
+  .process-step { flex-direction: column; gap: 16px; padding: 24px; }
+  .breadcrumb, .page-hero, .ui-showcase, .filter-tabs,
+  .interface-section, .principles-section, .deliverables-section,
+  .process-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .cta-box { padding: 44px 24px; }
+}
+/* ===== Back to Top Button ===== */
+/* A floating button that appears in the bottom-right corner after 
+   scrolling. Click to smooth-scroll back to the top. */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: #0db4c4;      /* button color — change to match your site */
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(13, 180, 196, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #0a95a3;      /* darker shade on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(13, 180, 196, 0.5);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Smaller size and tighter positioning on mobile */
+@media (max-width: 700px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+}
+/* ===== Scroll Progress Bar ===== */
+/* A thin gradient bar at the top of the page that fills as the 
+   user scrolls down. Subtle but premium-feeling. */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;                /* JS updates this to show progress */
+  background: linear-gradient(90deg, #0db4c4, #06d6a0);
+  z-index: 200;             /* stays above fixed navs (which are usually 100) */
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(13, 180, 196, 0.15);
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#0db4c4"/>
+      <path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.5 16h7a4 4 0 010 8H8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    Evolution Studios
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="get-started.html">Pricing</a>
+    <a href="get-started.html" class="nav-cta">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+  <span class="current">UI/UX Design</span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="hero-badge">
+    <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="4"/></svg>
+    UI/UX Design
+  </div>
+  <h1>Interfaces That <span class="highlight">Feel Effortless</span></h1>
+  <p>Good design is invisible — your users just enjoy the experience. I build interfaces that are intuitive, accessible, and a pleasure to use.</p>
+</section>
+
+<!-- ===== UI SHOWCASE ===== -->
+<div class="ui-showcase">
+  <div class="showcase-frame">
+    <div class="showcase-dots"><span></span><span></span><span></span></div>
+    <svg viewBox="0 0 1100 550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <rect width="1100" height="550" fill="#f8fbfc"/>
+      <!-- Sidebar -->
+      <rect x="0" y="0" width="220" height="550" fill="#fff"/>
+      <rect x="220" y="0" width="1" height="550" fill="#e2eff2"/>
+      <!-- Logo in sidebar -->
+      <rect x="24" y="30" width="32" height="32" rx="8" fill="#0db4c4"/>
+      <rect x="64" y="38" width="80" height="8" rx="2" fill="#1a2b30"/>
+      <rect x="64" y="50" width="50" height="5" rx="1" fill="#6b8a93"/>
+      <!-- Menu items -->
+      <rect x="16" y="100" width="188" height="38" rx="10" fill="#d4f3f7"/>
+      <circle cx="36" cy="119" r="6" fill="#0db4c4"/>
+      <rect x="54" y="115" width="80" height="8" rx="2" fill="#0a95a3"/>
+      <circle cx="36" cy="159" r="6" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+      <rect x="54" y="155" width="70" height="8" rx="2" fill="#3d5a62"/>
+      <circle cx="36" cy="199" r="6" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+      <rect x="54" y="195" width="90" height="8" rx="2" fill="#3d5a62"/>
+      <circle cx="36" cy="239" r="6" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+      <rect x="54" y="235" width="60" height="8" rx="2" fill="#3d5a62"/>
+      <circle cx="36" cy="279" r="6" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+      <rect x="54" y="275" width="100" height="8" rx="2" fill="#3d5a62"/>
+      <!-- Sidebar footer -->
+      <rect x="16" y="470" width="188" height="56" rx="12" fill="#f6fbfc"/>
+      <circle cx="40" cy="498" r="14" fill="#0db4c4"/>
+      <rect x="62" y="490" width="70" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="62" y="502" width="50" height="5" rx="1" fill="#6b8a93"/>
+      <!-- Main content header -->
+      <rect x="260" y="30" width="180" height="14" rx="3" fill="#1a2b30"/>
+      <rect x="260" y="52" width="120" height="7" rx="2" fill="#6b8a93"/>
+      <!-- Header actions -->
+      <rect x="880" y="28" width="100" height="32" rx="10" fill="#fff" stroke="#e2eff2"/>
+      <circle cx="900" cy="44" r="5" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+      <rect x="912" y="41" width="55" height="6" rx="2" fill="#3d5a62"/>
+      <rect x="990" y="28" width="90" height="32" rx="10" fill="#0db4c4"/>
+      <rect x="1006" y="41" width="58" height="6" rx="2" fill="#fff"/>
+      <!-- Stat cards -->
+      <rect x="260" y="90" width="260" height="110" rx="14" fill="#fff" stroke="#e2eff2"/>
+      <rect x="280" y="110" width="40" height="6" rx="2" fill="#6b8a93"/>
+      <rect x="280" y="126" width="90" height="18" rx="3" fill="#1a2b30"/>
+      <rect x="280" y="154" width="50" height="20" rx="10" fill="#d6f7ee"/>
+      <rect x="288" y="160" width="34" height="7" rx="2" fill="#06d6a0"/>
+      <!-- Mini chart -->
+      <path d="M400 180 L430 170 L460 165 L490 155 L500 150" stroke="#0db4c4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="500" cy="150" r="4" fill="#0db4c4"/>
+      <rect x="540" y="90" width="260" height="110" rx="14" fill="#fff" stroke="#e2eff2"/>
+      <rect x="560" y="110" width="40" height="6" rx="2" fill="#6b8a93"/>
+      <rect x="560" y="126" width="75" height="18" rx="3" fill="#1a2b30"/>
+      <rect x="560" y="154" width="50" height="20" rx="10" fill="#fef3c7"/>
+      <rect x="568" y="160" width="34" height="7" rx="2" fill="#d97706"/>
+      <path d="M680 170 L710 165 L740 175 L770 160 L780 165" stroke="#d97706" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="780" cy="165" r="4" fill="#d97706"/>
+      <rect x="820" y="90" width="260" height="110" rx="14" fill="#fff" stroke="#e2eff2"/>
+      <rect x="840" y="110" width="40" height="6" rx="2" fill="#6b8a93"/>
+      <rect x="840" y="126" width="95" height="18" rx="3" fill="#1a2b30"/>
+      <rect x="840" y="154" width="50" height="20" rx="10" fill="#d6f7ee"/>
+      <rect x="848" y="160" width="34" height="7" rx="2" fill="#06d6a0"/>
+      <path d="M960 175 L990 170 L1020 160 L1050 155 L1060 150" stroke="#06d6a0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="1060" cy="150" r="4" fill="#06d6a0"/>
+      <!-- Large chart card -->
+      <rect x="260" y="220" width="540" height="260" rx="14" fill="#fff" stroke="#e2eff2"/>
+      <rect x="280" y="240" width="100" height="10" rx="2" fill="#1a2b30"/>
+      <rect x="280" y="256" width="70" height="5" rx="1" fill="#6b8a93"/>
+      <rect x="700" y="242" width="80" height="24" rx="8" fill="#f6fbfc"/>
+      <rect x="712" y="251" width="56" height="6" rx="2" fill="#3d5a62"/>
+      <!-- Chart bars -->
+      <rect x="290" y="420" width="30" height="40" rx="4" fill="#d4f3f7"/>
+      <rect x="290" y="380" width="30" height="80" rx="4" fill="#0db4c4"/>
+      <rect x="340" y="400" width="30" height="60" rx="4" fill="#d4f3f7"/>
+      <rect x="340" y="350" width="30" height="110" rx="4" fill="#0db4c4"/>
+      <rect x="390" y="390" width="30" height="70" rx="4" fill="#d4f3f7"/>
+      <rect x="390" y="330" width="30" height="130" rx="4" fill="#0db4c4"/>
+      <rect x="440" y="380" width="30" height="80" rx="4" fill="#d4f3f7"/>
+      <rect x="440" y="310" width="30" height="150" rx="4" fill="#0db4c4"/>
+      <rect x="490" y="395" width="30" height="65" rx="4" fill="#d4f3f7"/>
+      <rect x="490" y="340" width="30" height="120" rx="4" fill="#0db4c4"/>
+      <rect x="540" y="370" width="30" height="90" rx="4" fill="#d4f3f7"/>
+      <rect x="540" y="290" width="30" height="170" rx="4" fill="#0db4c4"/>
+      <rect x="590" y="360" width="30" height="100" rx="4" fill="#d4f3f7"/>
+      <rect x="590" y="270" width="30" height="190" rx="4" fill="#06d6a0"/>
+      <rect x="640" y="385" width="30" height="75" rx="4" fill="#d4f3f7"/>
+      <rect x="640" y="320" width="30" height="140" rx="4" fill="#0db4c4"/>
+      <rect x="690" y="395" width="30" height="65" rx="4" fill="#d4f3f7"/>
+      <rect x="690" y="345" width="30" height="115" rx="4" fill="#0db4c4"/>
+      <rect x="740" y="370" width="30" height="90" rx="4" fill="#d4f3f7"/>
+      <rect x="740" y="300" width="30" height="160" rx="4" fill="#0db4c4"/>
+      <!-- Side activity card -->
+      <rect x="820" y="220" width="260" height="260" rx="14" fill="#fff" stroke="#e2eff2"/>
+      <rect x="840" y="240" width="90" height="10" rx="2" fill="#1a2b30"/>
+      <!-- Activity items -->
+      <circle cx="856" cy="285" r="12" fill="#d4f3f7"/>
+      <rect x="878" y="278" width="100" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="878" y="290" width="70" height="5" rx="1" fill="#6b8a93"/>
+      <circle cx="856" cy="325" r="12" fill="#d6f7ee"/>
+      <rect x="878" y="318" width="110" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="878" y="330" width="80" height="5" rx="1" fill="#6b8a93"/>
+      <circle cx="856" cy="365" r="12" fill="#fef3c7"/>
+      <rect x="878" y="358" width="95" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="878" y="370" width="65" height="5" rx="1" fill="#6b8a93"/>
+      <circle cx="856" cy="405" r="12" fill="#d4f3f7"/>
+      <rect x="878" y="398" width="105" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="878" y="410" width="75" height="5" rx="1" fill="#6b8a93"/>
+      <circle cx="856" cy="445" r="12" fill="#d6f7ee"/>
+      <rect x="878" y="438" width="85" height="7" rx="2" fill="#1a2b30"/>
+      <rect x="878" y="450" width="60" height="5" rx="1" fill="#6b8a93"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ===== FILTER TABS ===== -->
+<div class="filter-tabs">
+  <button class="filter-tab active" data-filter="all">All Interfaces</button>
+  <button class="filter-tab" data-filter="dashboard">Dashboards</button>
+  <button class="filter-tab" data-filter="ecommerce">E-Commerce</button>
+  <button class="filter-tab" data-filter="auth">Login/Auth</button>
+  <button class="filter-tab" data-filter="onboarding">Onboarding</button>
+</div>
+
+<!-- ===== INTERFACE EXAMPLES ===== -->
+<section class="interface-section">
+  <div class="section-label">Interface Examples</div>
+  <h2>Ideas for Every Screen</h2>
+  <p class="section-desc">From dashboards to checkouts, here are some UI patterns that can shape your product's experience.</p>
+
+  <div class="interface-grid">
+
+    <!-- Analytics Dashboard -->
+    <div class="interface-card" data-category="dashboard">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="260" fill="#f8fbfc"/>
+          <rect x="20" y="20" width="360" height="30" rx="8" fill="#fff"/>
+          <circle cx="36" cy="35" r="5" fill="#0db4c4"/>
+          <rect x="48" y="32" width="50" height="6" rx="2" fill="#1a2b30"/>
+          <rect x="320" y="28" width="50" height="14" rx="7" fill="#0db4c4"/>
+          <!-- Stats row -->
+          <rect x="20" y="62" width="110" height="60" rx="8" fill="#fff"/>
+          <rect x="30" y="72" width="35" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="30" y="82" width="60" height="10" rx="2" fill="#1a2b30"/>
+          <rect x="30" y="100" width="40" height="12" rx="6" fill="#d6f7ee"/>
+          <rect x="146" y="62" width="110" height="60" rx="8" fill="#fff"/>
+          <rect x="156" y="72" width="35" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="156" y="82" width="55" height="10" rx="2" fill="#1a2b30"/>
+          <rect x="156" y="100" width="40" height="12" rx="6" fill="#fef3c7"/>
+          <rect x="272" y="62" width="108" height="60" rx="8" fill="#fff"/>
+          <rect x="282" y="72" width="35" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="282" y="82" width="60" height="10" rx="2" fill="#1a2b30"/>
+          <rect x="282" y="100" width="40" height="12" rx="6" fill="#d6f7ee"/>
+          <!-- Chart -->
+          <rect x="20" y="134" width="360" height="110" rx="8" fill="#fff"/>
+          <path d="M40 220 L80 200 L120 210 L160 180 L200 190 L240 160 L280 170 L320 140 L360 150" stroke="#0db4c4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 220 L80 200 L120 210 L160 180 L200 190 L240 160 L280 170 L320 140 L360 150 L360 230 L40 230 Z" fill="#d4f3f7" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">Dashboard</span>
+        <h3>Analytics Overview</h3>
+        <p>Data-rich dashboards that turn numbers into insights. Perfect for SaaS tools and admin panels.</p>
+      </div>
+    </div>
+
+    <!-- Mobile App Login -->
+    <div class="interface-card" data-category="auth">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="loginBg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#0db4c4"/>
+              <stop offset="100%" stop-color="#06d6a0"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="260" fill="url(#loginBg)"/>
+          <circle cx="80" cy="60" r="40" fill="#fff" opacity="0.1"/>
+          <circle cx="340" cy="210" r="50" fill="#fff" opacity="0.1"/>
+          <!-- Login card -->
+          <rect x="80" y="50" width="240" height="180" rx="16" fill="#fff"/>
+          <rect x="150" y="70" width="100" height="12" rx="3" fill="#1a2b30"/>
+          <rect x="130" y="90" width="140" height="5" rx="1" fill="#6b8a93"/>
+          <!-- Input 1 -->
+          <rect x="100" y="115" width="200" height="32" rx="8" fill="#f6fbfc" stroke="#e2eff2"/>
+          <rect x="112" y="127" width="50" height="8" rx="2" fill="#6b8a93"/>
+          <!-- Input 2 -->
+          <rect x="100" y="155" width="200" height="32" rx="8" fill="#f6fbfc" stroke="#e2eff2"/>
+          <rect x="112" y="167" width="70" height="8" rx="2" fill="#6b8a93"/>
+          <circle cx="285" cy="171" r="6" fill="none" stroke="#6b8a93" stroke-width="1.5"/>
+          <!-- Button -->
+          <rect x="100" y="197" width="200" height="30" rx="15" fill="#0db4c4"/>
+          <rect x="175" y="207" width="50" height="10" rx="2" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">Auth</span>
+        <h3>Clean Login Flow</h3>
+        <p>Friction-free login screens that get users in fast. Supports email, social, and passwordless options.</p>
+      </div>
+    </div>
+
+    <!-- E-commerce Product -->
+    <div class="interface-card" data-category="ecommerce">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="260" fill="#fff"/>
+          <!-- Product image -->
+          <rect x="20" y="20" width="160" height="220" rx="12" fill="#f5ede0"/>
+          <circle cx="100" cy="130" r="50" fill="#c49b6c"/>
+          <circle cx="100" cy="130" r="36" fill="#8b4513"/>
+          <!-- Product info -->
+          <rect x="200" y="30" width="60" height="16" rx="8" fill="#d6f7ee"/>
+          <rect x="212" y="37" width="36" height="5" rx="1" fill="#06d6a0"/>
+          <rect x="200" y="55" width="170" height="14" rx="3" fill="#1a2b30"/>
+          <rect x="200" y="75" width="120" height="14" rx="3" fill="#1a2b30"/>
+          <rect x="200" y="100" width="80" height="14" rx="3" fill="#0db4c4"/>
+          <rect x="290" y="103" width="50" height="8" rx="2" fill="#6b8a93"/>
+          <!-- Options -->
+          <rect x="200" y="130" width="40" height="5" rx="1" fill="#6b8a93"/>
+          <circle cx="210" cy="152" r="10" fill="#1a2b30"/>
+          <circle cx="235" cy="152" r="10" fill="#c94a4a"/>
+          <circle cx="260" cy="152" r="10" fill="#0db4c4"/>
+          <circle cx="285" cy="152" r="10" fill="#fbbf24"/>
+          <!-- Add to cart -->
+          <rect x="200" y="180" width="170" height="34" rx="10" fill="#1a2b30"/>
+          <rect x="240" y="193" width="90" height="8" rx="2" fill="#fff"/>
+          <rect x="200" y="220" width="80" height="16" rx="3" fill="none" stroke="#e2eff2"/>
+          <rect x="212" y="225" width="56" height="6" rx="2" fill="#6b8a93"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">E-Commerce</span>
+        <h3>Product Detail Page</h3>
+        <p>Focused product layouts that make buying easy. Options, reviews, and add-to-cart all in the right place.</p>
+      </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="interface-card" data-category="onboarding">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="260" fill="#f8fbfc"/>
+          <!-- Progress bar -->
+          <rect x="40" y="30" width="320" height="6" rx="3" fill="#e2eff2"/>
+          <rect x="40" y="30" width="200" height="6" rx="3" fill="#0db4c4"/>
+          <circle cx="80" cy="33" r="10" fill="#0db4c4"/>
+          <path d="M75 33 l4 4 l7 -7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="200" cy="33" r="10" fill="#0db4c4"/>
+          <rect x="196" y="29" width="8" height="8" rx="1" fill="#fff"/>
+          <circle cx="320" cy="33" r="10" fill="#fff" stroke="#e2eff2" stroke-width="2"/>
+          <!-- Title -->
+          <rect x="100" y="68" width="200" height="14" rx="3" fill="#1a2b30"/>
+          <rect x="130" y="90" width="140" height="6" rx="2" fill="#6b8a93"/>
+          <!-- Option cards -->
+          <rect x="40" y="115" width="150" height="100" rx="12" fill="#fff" stroke="#0db4c4" stroke-width="2"/>
+          <circle cx="115" cy="140" r="14" fill="#d4f3f7"/>
+          <rect x="109" y="136" width="12" height="8" rx="1" fill="#0db4c4"/>
+          <rect x="70" y="170" width="90" height="8" rx="2" fill="#1a2b30"/>
+          <rect x="60" y="186" width="110" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="60" y="196" width="90" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="210" y="115" width="150" height="100" rx="12" fill="#fff" stroke="#e2eff2"/>
+          <circle cx="285" cy="140" r="14" fill="#f6fbfc"/>
+          <circle cx="285" cy="140" r="6" fill="#6b8a93"/>
+          <rect x="240" y="170" width="90" height="8" rx="2" fill="#1a2b30"/>
+          <rect x="230" y="186" width="110" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="230" y="196" width="90" height="5" rx="1" fill="#6b8a93"/>
+          <!-- Next button -->
+          <rect x="280" y="230" width="80" height="24" rx="12" fill="#0db4c4"/>
+          <rect x="298" y="239" width="40" height="7" rx="2" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">Onboarding</span>
+        <h3>Step-by-Step Setup</h3>
+        <p>Guide new users through setup without overwhelming them. Progress bars keep them engaged.</p>
+      </div>
+    </div>
+
+    <!-- Checkout Flow -->
+    <div class="interface-card" data-category="ecommerce">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="260" fill="#fff"/>
+          <!-- Steps -->
+          <rect x="30" y="20" width="340" height="4" rx="2" fill="#e2eff2"/>
+          <rect x="30" y="20" width="170" height="4" rx="2" fill="#0db4c4"/>
+          <rect x="30" y="35" width="50" height="6" rx="2" fill="#0db4c4"/>
+          <rect x="165" y="35" width="45" height="6" rx="2" fill="#0db4c4"/>
+          <rect x="310" y="35" width="50" height="6" rx="2" fill="#6b8a93"/>
+          <!-- Cart items -->
+          <rect x="30" y="60" width="230" height="180" rx="10" fill="#f8fbfc"/>
+          <rect x="45" y="75" width="60" height="40" rx="6" fill="#d4f3f7"/>
+          <rect x="115" y="80" width="100" height="7" rx="2" fill="#1a2b30"/>
+          <rect x="115" y="93" width="60" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="115" y="103" width="40" height="8" rx="2" fill="#0db4c4"/>
+          <rect x="45" y="130" width="60" height="40" rx="6" fill="#fef3c7"/>
+          <rect x="115" y="135" width="100" height="7" rx="2" fill="#1a2b30"/>
+          <rect x="115" y="148" width="60" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="115" y="158" width="40" height="8" rx="2" fill="#0db4c4"/>
+          <rect x="45" y="185" width="60" height="40" rx="6" fill="#d6f7ee"/>
+          <rect x="115" y="190" width="100" height="7" rx="2" fill="#1a2b30"/>
+          <rect x="115" y="203" width="60" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="115" y="213" width="40" height="8" rx="2" fill="#0db4c4"/>
+          <!-- Summary -->
+          <rect x="280" y="60" width="100" height="180" rx="10" fill="#fff" stroke="#e2eff2"/>
+          <rect x="295" y="75" width="60" height="8" rx="2" fill="#1a2b30"/>
+          <rect x="295" y="100" width="40" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="345" y="100" width="20" height="5" rx="1" fill="#1a2b30"/>
+          <rect x="295" y="118" width="40" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="345" y="118" width="20" height="5" rx="1" fill="#1a2b30"/>
+          <rect x="295" y="136" width="40" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="345" y="136" width="20" height="5" rx="1" fill="#1a2b30"/>
+          <line x1="295" y1="155" x2="365" y2="155" stroke="#e2eff2"/>
+          <rect x="295" y="167" width="30" height="8" rx="2" fill="#1a2b30"/>
+          <rect x="340" y="167" width="25" height="8" rx="2" fill="#1a2b30"/>
+          <rect x="295" y="190" width="70" height="30" rx="15" fill="#0db4c4"/>
+          <rect x="312" y="200" width="36" height="8" rx="2" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">E-Commerce</span>
+        <h3>Smooth Checkout</h3>
+        <p>Reduce cart abandonment with a checkout that's clear, fast, and builds trust at every step.</p>
+      </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="interface-card" data-category="dashboard">
+      <div class="interface-preview">
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="260" fill="#f8fbfc"/>
+          <!-- Settings tabs -->
+          <rect x="20" y="20" width="360" height="40" rx="10" fill="#fff"/>
+          <rect x="30" y="30" width="70" height="20" rx="10" fill="#0db4c4"/>
+          <rect x="46" y="36" width="40" height="8" rx="2" fill="#fff"/>
+          <rect x="110" y="36" width="50" height="8" rx="2" fill="#6b8a93"/>
+          <rect x="180" y="36" width="60" height="8" rx="2" fill="#6b8a93"/>
+          <rect x="260" y="36" width="45" height="8" rx="2" fill="#6b8a93"/>
+          <!-- Profile section -->
+          <rect x="20" y="75" width="360" height="165" rx="10" fill="#fff"/>
+          <circle cx="70" cy="120" r="30" fill="#d4f3f7"/>
+          <circle cx="70" cy="110" r="10" fill="#0db4c4"/>
+          <path d="M52 135 Q70 150 88 135" fill="#0db4c4"/>
+          <rect x="115" y="98" width="120" height="12" rx="3" fill="#1a2b30"/>
+          <rect x="115" y="118" width="170" height="6" rx="2" fill="#6b8a93"/>
+          <rect x="115" y="132" width="90" height="22" rx="11" fill="#f6fbfc" stroke="#e2eff2"/>
+          <rect x="128" y="139" width="60" height="7" rx="2" fill="#3d5a62"/>
+          <!-- Toggle rows -->
+          <line x1="40" y1="170" x2="360" y2="170" stroke="#e2eff2"/>
+          <rect x="40" y="183" width="90" height="7" rx="2" fill="#1a2b30"/>
+          <rect x="40" y="195" width="140" height="5" rx="1" fill="#6b8a93"/>
+          <rect x="320" y="184" width="40" height="20" rx="10" fill="#0db4c4"/>
+          <circle cx="350" cy="194" r="7" fill="#fff"/>
+          <line x1="40" y1="216" x2="360" y2="216" stroke="#e2eff2"/>
+          <rect x="40" y="225" width="100" height="7" rx="2" fill="#1a2b30"/>
+          <rect x="320" y="222" width="40" height="20" rx="10" fill="#e2eff2"/>
+          <circle cx="330" cy="232" r="7" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="interface-info">
+        <span class="interface-tag">Dashboard</span>
+        <h3>Settings &amp; Preferences</h3>
+        <p>Organized settings panels that let users customize without getting lost. Toggles, tabs, and clear sections.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== PRINCIPLES ===== -->
+<section class="principles-section">
+  <div class="principles-inner">
+    <div class="section-label" style="justify-content:center;">Design Principles</div>
+    <h2>What Makes Great UX</h2>
+    <p class="section-desc">Good design isn't just about looks — it's about creating experiences that feel natural. Here's what I focus on with every project.</p>
+
+    <div class="principles-grid">
+
+      <div class="principle-card">
+        <div class="principle-number">01</div>
+        <div class="principle-text">
+          <h3>Clarity Over Cleverness</h3>
+          <p>Users shouldn't have to think. Every button, link, and label should be immediately obvious. Clever designs are forgotten; clear ones are used.</p>
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-number">02</div>
+        <div class="principle-text">
+          <h3>Consistency Builds Trust</h3>
+          <p>Colors, spacing, fonts, and interactions stay consistent across every screen. When users know what to expect, they feel confident using your product.</p>
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-number">03</div>
+        <div class="principle-text">
+          <h3>Accessibility for Everyone</h3>
+          <p>Designs work for all users — with proper contrast, keyboard navigation, screen reader support, and touch-friendly targets. Good UX leaves no one behind.</p>
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-number">04</div>
+        <div class="principle-text">
+          <h3>Fewer Steps, Faster Wins</h3>
+          <p>Every extra click is a chance for users to drop off. I find the shortest path to completing a task without sacrificing clarity or functionality.</p>
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-number">05</div>
+        <div class="principle-text">
+          <h3>Feedback at Every Step</h3>
+          <p>Users should always know what's happening — loading states, confirmations, errors, and progress indicators keep them informed and in control.</p>
+        </div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-number">06</div>
+        <div class="principle-text">
+          <h3>Mobile-First Thinking</h3>
+          <p>Over half of users are on phones. Designs start with the smallest screen and scale up, ensuring your product works beautifully everywhere.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== DELIVERABLES ===== -->
+<section class="deliverables-section">
+  <div class="section-label">What You Get</div>
+  <h2>Deliverables &amp; Assets</h2>
+  <p class="section-desc">Every UI/UX project comes with everything you need to hand off to developers or build on the design yourself.</p>
+
+  <div class="deliverables-grid">
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/>
+        </svg>
+      </div>
+      <h4>Wireframes</h4>
+      <p>Low-fidelity layouts that map out structure and flow before we worry about visual design.</p>
+    </div>
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <h4>High-Fidelity Mockups</h4>
+      <p>Pixel-perfect designs showing exactly how every screen will look when built.</p>
+    </div>
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <h4>Interactive Prototype</h4>
+      <p>Clickable prototype so you can experience the full flow before a single line of code is written.</p>
+    </div>
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/>
+          <circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/>
+          <path d="M12 2a10 10 0 1010 10c0-1.5-.5-2.5-1-3a8 8 0 00-9-9z"/>
+        </svg>
+      </div>
+      <h4>Style Guide</h4>
+      <p>Color palette, typography, spacing, and component library documented for consistency.</p>
+    </div>
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <h4>Component Library</h4>
+      <p>Reusable buttons, forms, cards, and patterns you can use across your entire product.</p>
+    </div>
+
+    <div class="deliverable">
+      <div class="deliverable-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+      </div>
+      <h4>Developer Handoff</h4>
+      <p>Clean exports, specs, and documentation that make life easy for whoever builds it.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process-section">
+  <div class="process-inner">
+    <div class="section-label" style="justify-content:center;">My Process</div>
+    <h2>How We'll Work Together</h2>
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-content">
+          <h3>Discovery &amp; Research</h3>
+          <p>We start by understanding your users, business goals, and what success looks like. I ask a lot of questions — good design starts with great context.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-content">
+          <h3>User Flows &amp; Wireframes</h3>
+          <p>Before we touch visual design, we map out the structure and flow. This is where we catch problems early and make sure the experience makes sense.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-content">
+          <h3>Visual Design</h3>
+          <p>I bring your brand to life with polished, pixel-perfect designs. You'll see mockups of every screen with real content, colors, and interactions.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <div class="process-step-content">
+          <h3>Prototype &amp; Review</h3>
+          <p>I build an interactive prototype you can click through. We refine together until it feels right — then it's ready for development handoff.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Have a Product Idea?</h2>
+    <p>Let's design something your users will love. Request a free UI sample to see my style before committing.</p>
+    <a href="get-started.html" class="btn-white">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-socials">
+      <a href="mailto:evostudiosllc@gmail.com" class="social-link" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Evolution Studios LLC. All rights reserved.</p>
+  </div>
+</footer>
+<!-- Back to top button — paste this right before the closing </body> tag,
+     but BEFORE any <script> tags that reference it -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+    <polyline points="5 12 12 5 19 12"/>
+  </svg>
+</button>
+
+<script>
+/* ===== Back to Top Button ===== */
+/* Shows the button once user has scrolled past 400px. 
+   Clicking scrolls smoothly back to the top. */
+
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* NOTE: For smooth scrolling to work, your CSS should include:
+   html { scroll-behavior: smooth; }
+   (Already built into this snippet's example but not the script itself.) */
+// Nav scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile toggle
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+// Filter tabs
+const tabs = document.querySelectorAll('.filter-tab');
+const cards = document.querySelectorAll('.interface-card');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+/* ===== Scroll Progress Bar ===== */
+/* Calculates how far down the page the user has scrolled as a 
+   percentage, then sets the bar's width to match. */
+
+const progressBar = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+});
+</script>
+
+</body>
+</html>

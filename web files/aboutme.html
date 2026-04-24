@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVY6RMLWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BLVY6RMLWH');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Evolution Studios — Web Design & Development</title>
+<meta name="description" content="Meet John, the Phoenix-based web designer behind Evolution Studios. Building clean, modern websites for small businesses that convert visitors into customers.">
+<link rel="stylesheet" href="https://myfonts.neocities.org/fonts.css">
+<style>
+/* ============ VARIABLES ============ */
+:root {
+  --bg-primary: #f6fbfc;
+  --bg-hero: #eaf7f9;
+  --text-dark: #1a2b30;
+  --text-mid: #3d5a62;
+  --text-light: #6b8a93;
+  --accent: #0db4c4;
+  --accent-dark: #0a95a3;
+  --accent-light: #d4f3f7;
+  --accent-glow: rgba(13, 180, 196, 0.15);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2eff2;
+  --shadow-sm: 0 1px 3px rgba(26, 43, 48, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 43, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 43, 48, 0.1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+/* ===== Scroll Progress Bar ===== */
+/* A thin gradient bar at the top of the page that fills as the 
+   user scrolls down. Subtle but premium-feeling. */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;                /* JS updates this to show progress */
+  background: linear-gradient(90deg, #0db4c4, #06d6a0);
+  z-index: 200;             /* stays above fixed navs (which are usually 100) */
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(13, 180, 196, 0.15);
+}
+.value-grid {
+  perspective: 1000px;
+}
+
+/* The CARDS themselves. 
+   Update ".tilt-card" to match your card class. */
+.value-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s ease;
+}
+
+/* INNER CONTENT floats above the card surface for depth.
+   Update the selectors to match whatever's inside YOUR cards
+   (icons, headings, paragraphs, images, etc.) */
+.value-card .value-icon,
+.value-card h3,
+.value-card p {
+  transform: translateZ(20px);
+  transition: transform 0.35s ease;
+}
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(13, 180, 196, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--accent-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(13, 180, 196, 0.5);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 700px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246, 251, 252, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 239, 242, 0.6);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--white) !important;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-dark);
+  margin: 6px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: 140px 32px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(13, 180, 196, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.page-hero .section-label {
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s ease both;
+}
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  max-width: 700px;
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.page-hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero p {
+  font-size: clamp(17px, 2.2vw, 20px);
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 540px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+/* ============ ABOUT SECTION ============ */
+.about-section {
+  padding: 80px 32px 100px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.about-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.about-text p {
+  color: var(--text-mid);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.about-text p:last-of-type { margin-bottom: 32px; }
+.about-visual {
+  position: relative;
+}
+.about-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #06d6a0);
+}
+.about-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--white);
+}
+.about-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.about-card .role {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.about-card .bio {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  padding: 6px 14px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 50px;
+  letter-spacing: 0.3px;
+}
+.about-card-deco {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  pointer-events: none;
+}
+
+/* ============ VALUES SECTION ============ */
+.values-section {
+  padding: 80px 32px 100px;
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+.values-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.values-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.values-inner .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 56px;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.value-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  text-align: left;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #06d6a0);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.value-card:hover::before { opacity: 1; }
+.value-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.value-icon svg { width: 26px; height: 26px; color: var(--accent); }
+.value-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+.value-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 80px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-box {
+  background: linear-gradient(135deg, #0db4c4 0%, #0a95a3 50%, #078f8e 100%);
+  border-radius: var(--radius-lg);
+  padding: 64px 48px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.cta-box p {
+  font-size: 17px;
+  opacity: 0.9;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--white);
+  color: var(--accent-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--accent);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(13, 180, 196, 0.3);
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(13, 180, 196, 0.35);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+}
+.footer-inner { max-width: 600px; margin: 0 auto; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.social-link {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.social-link:hover { background: var(--accent); transform: translateY(-2px); }
+.social-link:hover svg { color: var(--white); }
+.social-link svg { width: 20px; height: 20px; color: var(--accent); }
+.footer-copy { font-size: 13px; color: var(--text-light); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+  }
+  .values-grid { grid-template-columns: 1fr; }
+  .page-hero, .about-section, .values-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .cta-box { padding: 48px 28px; }
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#0db4c4"/>
+      <path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.5 16h7a4 4 0 010 8H8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    Evolution Studios
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#process">Process</a>
+    <a href="get-started.html" class="nav-cta">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="section-label">About</div>
+  <h1>The Person Behind <span class="highlight">Evolution Studios</span></h1>
+  <p>A Phoenix-based web designer passionate about helping small businesses build a stronger online presence.</p>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">My Story</div>
+      <h2>Building Websites That Actually Work for Your Business</h2>
+      <p>I'm John, a web designer based in Phoenix, AZ. I started Evolution Studios with one goal in mind — to help small businesses and startups get online with websites that look great and actually bring in customers.</p>
+      <p>I care about the details. Every site I build is fast, mobile-friendly, and designed with your customers in mind. No bloated templates, no cookie-cutter designs — just clean, purposeful work built from the ground up.</p>
+      <p>Whether you're starting from scratch or need a redesign, I'm here to make the process simple and the result something you're proud to share.</p>
+      <a href="get-started.html" class="btn-primary">
+        Work With Me
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+      </a>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <div class="about-avatar">J</div>
+        <h3>John</h3>
+        <div class="role">Founder & Web Designer</div>
+        <p class="bio">Phoenix, AZ — passionate about clean design, fast websites, and helping small businesses grow their online presence.</p>
+        <div class="about-tags">
+          <span class="tag">Web Design</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Mobile-First</span>
+          <span class="tag">Phoenix, AZ</span>
+          <span class="tag">Small Business</span>
+        </div>
+        <div class="about-card-deco"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUES ===== -->
+<section class="values-section">
+  <div class="values-inner">
+    <div class="section-label" style="justify-content:center;">What I Stand For</div>
+    <h2>How I Approach Every Project</h2>
+    <p class="section-desc">These aren't just buzzwords — they're the principles that guide every decision I make when building your site.</p>
+    <div class="values-grid">
+
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Quality First</h3>
+        <p>I don't cut corners. Every site is hand-built with clean code, proper structure, and attention to the details that matter for performance and SEO.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Delivered on Time</h3>
+        <p>Your time is valuable. I set realistic timelines, communicate clearly throughout the process, and deliver what I promise — on schedule.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Client-Centered</h3>
+        <p>You know your business better than anyone. I listen first, then design — making sure the final product reflects your brand and serves your customers.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Ready to Build Something Great?</h2>
+    <p>Let's talk about your project and how Evolution Studios can help.</p>
+    <a href="get-started.html" class="btn-white">
+      Start a Project
+      <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-socials">
+      <a href="mailto:evostudiosllc@gmail.com" class="social-link" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/john-wilkinson-a63a3b241/" target="_blank" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100082009905685" target="_blank" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">Serving businesses in Phoenix, AZ &nbsp;·&nbsp; &copy; 2026 Evolution Studios LLC. All rights reserved.</p>
+  </div>
+</footer>
+<!-- Back to top button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+    <polyline points="5 12 12 5 19 12"/>
+  </svg>
+</button>
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 200);
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+// 3D tilt on cards
+const tiltCards = document.querySelectorAll('.value-card');
+
+const MAX_TILT = 8;       // max rotation in degrees. Try 4 (subtle) to 12 (dramatic)
+const LIFT = -6;          // px to lift the card on hover. Set to 0 for no lift.
+
+tiltCards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+    const rotateX = ((centerY - y) / centerY) * MAX_TILT;
+    
+    card.style.transform = 
+      `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(${LIFT}px)`;
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+/* ===== Scroll Progress Bar ===== */
+/* Calculates how far down the page the user has scrolled as a 
+   percentage, then sets the bar's width to match. */
+
+const progressBar = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+});
+</script>
+
+</body>
+</html>

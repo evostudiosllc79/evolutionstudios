@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLVY6RMLWH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BLVY6RMLWH');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Design Ideas & Examples — Evolution Studios</title>
+<link rel="stylesheet" href="https://myfonts.neocities.org/fonts.css">
+<style>
+
+/* ============ VARIABLES ============ */
+:root {
+  --bg-primary: #f6fbfc;
+  --bg-hero: #eaf7f9;
+  --text-dark: #1a2b30;
+  --text-mid: #3d5a62;
+  --text-light: #6b8a93;
+  --accent: #0db4c4;
+  --accent-dark: #0a95a3;
+  --accent-light: #d4f3f7;
+  --accent-glow: rgba(13, 180, 196, 0.15);
+  --white: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #e2eff2;
+  --shadow-sm: 0 1px 3px rgba(26, 43, 48, 0.06);
+  --shadow-md: 0 8px 30px rgba(26, 43, 48, 0.08);
+  --shadow-lg: 0 20px 60px rgba(26, 43, 48, 0.1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+/* ============ RESET ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(246, 251, 252, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 239, 242, 0.6);
+  transition: box-shadow 0.3s;
+}
+.nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 20px;
+  color: var(--text-dark);
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 15px; font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--white) !important;
+  font-weight: 600; font-size: 14px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+.nav-toggle span {
+  display: block; width: 24px; height: 2px; background: var(--text-dark);
+  margin: 6px 0; border-radius: 2px; transition: 0.3s;
+}
+
+/* ============ BREADCRUMB ============ */
+.breadcrumb {
+  padding: 110px 32px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 14px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumb a { color: var(--text-mid); transition: color 0.2s; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb svg { width: 14px; height: 14px; }
+.breadcrumb .current { color: var(--text-dark); font-weight: 500; }
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: 40px 32px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero-badge svg { width: 14px; height: 14px; }
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.page-hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), #06d6a0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-hero p {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+/* ============ FILTER TABS ============ */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 32px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.filter-tab {
+  padding: 10px 20px;
+  background: var(--white);
+  border: 1.5px solid var(--card-border);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tab:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filter-tab.active {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+/* ============ DESIGN GRID ============ */
+.design-grid {
+  padding: 20px 32px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.design-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+.design-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.design-preview {
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+.design-preview svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.design-info {
+  padding: 24px 26px 28px;
+}
+.design-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+.design-info h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.design-info p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.design-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.feature-chip {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--bg-hero);
+  color: var(--text-mid);
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+/* ============ STYLE GUIDE ============ */
+.style-guide {
+  padding: 80px 32px;
+  background: linear-gradient(180deg, var(--bg-hero) 0%, var(--bg-primary) 100%);
+}
+.style-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.style-guide h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.style-guide .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.style-card {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+.style-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.palette-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.swatch {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.style-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
+}
+.style-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.style-card .use-case {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ============ FEATURES LIST ============ */
+.features-section {
+  padding: 80px 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.features-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  margin-bottom: 16px;
+}
+.features-section .section-desc {
+  color: var(--text-mid);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.feature-item {
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: all 0.25s;
+}
+.feature-item:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+.feature-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.feature-icon svg { width: 20px; height: 20px; color: var(--accent); }
+.feature-text h4 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+.feature-text p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 80px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-box {
+  background: linear-gradient(135deg, #0db4c4 0%, #0a95a3 50%, #078f8e 100%);
+  border-radius: var(--radius-lg);
+  padding: 60px 48px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -30%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+.cta-box p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: var(--white);
+  color: var(--accent-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+}
+.footer-inner { max-width: 600px; margin: 0 auto; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.social-link {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+}
+.social-link:hover { background: var(--accent); transform: translateY(-2px); }
+.social-link:hover svg { color: var(--white); }
+.social-link svg { width: 20px; height: 20px; color: var(--accent); }
+.footer-copy { font-size: 13px; color: var(--text-light); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.design-card.hidden { display: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .design-grid { grid-template-columns: repeat(2, 1fr); }
+  .style-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .features-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--bg-primary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--card-border);
+    box-shadow: var(--shadow-md);
+  }
+  .design-grid { grid-template-columns: 1fr; padding-left: 20px; padding-right: 20px; }
+  .breadcrumb, .page-hero, .filter-tabs,
+  .style-guide, .features-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .cta-box { padding: 44px 24px; }
+}
+/* ===== Scroll Progress Bar ===== */
+/* A thin gradient bar at the top of the page that fills as the 
+   user scrolls down. Subtle but premium-feeling. */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;                /* JS updates this to show progress */
+  background: linear-gradient(90deg, #0db4c4, #06d6a0);
+  z-index: 200;             /* stays above fixed navs (which are usually 100) */
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(13, 180, 196, 0.15);
+}
+/* ===== Back to Top Button ===== */
+/* A floating button that appears in the bottom-right corner after 
+   scrolling. Click to smooth-scroll back to the top. */
+
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: #0db4c4;      /* button color — change to match your site */
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(13, 180, 196, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #0a95a3;      /* darker shade on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(13, 180, 196, 0.5);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Smaller size and tighter positioning on mobile */
+@media (max-width: 700px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <rect width="32" height="32" rx="8" fill="#0db4c4"/>
+      <path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.5 16h7a4 4 0 010 8H8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    Evolution Studios
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="aboutme.html">About Me</a>
+    <a href="get-started.html">Pricing</a>
+    <a href="get-started.html" class="nav-cta">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+  <span class="current">Web Design</span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="page-hero">
+  <div class="hero-badge">
+    <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="4"/></svg>
+    Web Design Inspiration
+  </div>
+  <h1>Find Your <span class="highlight">Perfect Style</span></h1>
+  <p>Browse different website styles and ideas to help shape your vision. Mix and match features to create something that fits your brand perfectly.</p>
+</section>
+
+<!-- ===== FILTER TABS ===== -->
+<div class="filter-tabs">
+  <button class="filter-tab active" data-filter="all">All Examples</button>
+  <button class="filter-tab" data-filter="business">Business</button>
+  <button class="filter-tab" data-filter="portfolio">Portfolio</button>
+  <button class="filter-tab" data-filter="ecommerce">E-Commerce</button>
+  <button class="filter-tab" data-filter="restaurant">Restaurant</button>
+  <button class="filter-tab" data-filter="blog">Blog</button>
+</div>
+
+<!-- ===== DESIGN EXAMPLES GRID ===== -->
+<section class="design-grid">
+
+  <!-- Card 1: Modern SaaS/Business -->
+  <div class="design-card" data-category="business">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#eef5ff"/>
+            <stop offset="100%" stop-color="#dbeafe"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="240" fill="url(#bg1)"/>
+        <!-- Top nav -->
+        <rect x="20" y="20" width="360" height="24" rx="4" fill="#fff"/>
+        <circle cx="36" cy="32" r="5" fill="#3b82f6"/>
+        <rect x="50" y="29" width="40" height="6" rx="2" fill="#1e3a8a"/>
+        <rect x="280" y="27" width="35" height="10" rx="5" fill="#e5e7eb"/>
+        <rect x="325" y="27" width="45" height="10" rx="5" fill="#3b82f6"/>
+        <!-- Headline -->
+        <rect x="40" y="70" width="180" height="12" rx="3" fill="#1e3a8a"/>
+        <rect x="40" y="88" width="140" height="12" rx="3" fill="#1e3a8a"/>
+        <rect x="40" y="110" width="200" height="6" rx="2" fill="#64748b"/>
+        <rect x="40" y="122" width="170" height="6" rx="2" fill="#64748b"/>
+        <rect x="40" y="145" width="70" height="22" rx="11" fill="#3b82f6"/>
+        <rect x="120" y="145" width="70" height="22" rx="11" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+        <!-- Product visual -->
+        <rect x="250" y="70" width="130" height="100" rx="8" fill="#fff" stroke="#cbd5e1"/>
+        <rect x="260" y="80" width="110" height="8" rx="2" fill="#3b82f6"/>
+        <rect x="260" y="95" width="80" height="4" rx="1" fill="#cbd5e1"/>
+        <rect x="260" y="105" width="100" height="4" rx="1" fill="#cbd5e1"/>
+        <rect x="260" y="120" width="50" height="30" rx="4" fill="#dbeafe"/>
+        <rect x="315" y="120" width="50" height="30" rx="4" fill="#dbeafe"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Business</span>
+      <h3>Modern SaaS</h3>
+      <p>Clean, conversion-focused layout perfect for software companies, tech startups, and professional services.</p>
+      <div class="design-features">
+        <span class="feature-chip">Hero CTA</span>
+        <span class="feature-chip">Features grid</span>
+        <span class="feature-chip">Testimonials</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2: Portfolio Dark -->
+  <div class="design-card" data-category="portfolio">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="240" fill="#0f0f14"/>
+        <!-- Nav -->
+        <rect x="30" y="24" width="40" height="6" rx="2" fill="#fff"/>
+        <circle cx="340" cy="27" r="3" fill="#d4ff3a"/>
+        <circle cx="355" cy="27" r="3" fill="#fff" opacity="0.4"/>
+        <circle cx="370" cy="27" r="3" fill="#fff" opacity="0.4"/>
+        <!-- Giant type -->
+        <rect x="30" y="70" width="280" height="18" rx="3" fill="#fff"/>
+        <rect x="30" y="96" width="200" height="18" rx="3" fill="#d4ff3a"/>
+        <rect x="30" y="122" width="240" height="18" rx="3" fill="#fff"/>
+        <!-- Subtitle -->
+        <rect x="30" y="155" width="180" height="5" rx="1" fill="#fff" opacity="0.5"/>
+        <!-- Work thumbs -->
+        <rect x="30" y="180" width="80" height="50" rx="4" fill="#2a2a35"/>
+        <rect x="120" y="180" width="80" height="50" rx="4" fill="#3a3a4a"/>
+        <rect x="210" y="180" width="80" height="50" rx="4" fill="#d4ff3a" opacity="0.3"/>
+        <rect x="300" y="180" width="80" height="50" rx="4" fill="#2a2a35"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Portfolio</span>
+      <h3>Bold Creative</h3>
+      <p>Dark, striking aesthetic with big typography. Great for designers, photographers, and creative professionals.</p>
+      <div class="design-features">
+        <span class="feature-chip">Dark mode</span>
+        <span class="feature-chip">Large type</span>
+        <span class="feature-chip">Project grid</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3: E-commerce -->
+  <div class="design-card" data-category="ecommerce">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="240" fill="#faf7f2"/>
+        <!-- Top bar -->
+        <rect x="0" y="0" width="400" height="32" fill="#1a1a1a"/>
+        <rect x="160" y="13" width="80" height="6" rx="2" fill="#fff"/>
+        <!-- Nav -->
+        <rect x="30" y="46" width="340" height="28" rx="4" fill="#fff"/>
+        <circle cx="50" cy="60" r="7" fill="#c94a4a"/>
+        <rect x="65" y="57" width="50" height="6" rx="2" fill="#1a1a1a"/>
+        <rect x="260" y="55" width="28" height="10" rx="3" fill="#f3e9d7"/>
+        <rect x="295" y="55" width="28" height="10" rx="3" fill="#f3e9d7"/>
+        <rect x="330" y="55" width="28" height="10" rx="3" fill="#f3e9d7"/>
+        <!-- Product grid -->
+        <rect x="30" y="88" width="105" height="130" rx="6" fill="#fff"/>
+        <rect x="40" y="98" width="85" height="70" rx="4" fill="#f3e9d7"/>
+        <circle cx="82" cy="133" r="18" fill="#c94a4a"/>
+        <rect x="40" y="178" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="40" y="190" width="30" height="8" rx="2" fill="#c94a4a"/>
+        <rect x="147" y="88" width="105" height="130" rx="6" fill="#fff"/>
+        <rect x="157" y="98" width="85" height="70" rx="4" fill="#e8dcc4"/>
+        <circle cx="199" cy="133" r="18" fill="#1a1a1a"/>
+        <rect x="157" y="178" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="157" y="190" width="30" height="8" rx="2" fill="#c94a4a"/>
+        <rect x="264" y="88" width="105" height="130" rx="6" fill="#fff"/>
+        <rect x="274" y="98" width="85" height="70" rx="4" fill="#dcc99a"/>
+        <circle cx="316" cy="133" r="18" fill="#c94a4a"/>
+        <rect x="274" y="178" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="274" y="190" width="30" height="8" rx="2" fill="#c94a4a"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">E-Commerce</span>
+      <h3>Boutique Shop</h3>
+      <p>Warm, inviting product showcase with strong visual hierarchy. Perfect for online stores and artisan brands.</p>
+      <div class="design-features">
+        <span class="feature-chip">Product grid</span>
+        <span class="feature-chip">Cart system</span>
+        <span class="feature-chip">Checkout flow</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4: Restaurant -->
+  <div class="design-card" data-category="restaurant">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2d1810"/>
+            <stop offset="100%" stop-color="#1a0e08"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="240" fill="url(#bg4)"/>
+        <!-- Nav -->
+        <rect x="30" y="22" width="50" height="6" rx="2" fill="#d4a574"/>
+        <rect x="280" y="22" width="90" height="8" rx="4" fill="#d4a574" opacity="0.3"/>
+        <!-- Hero -->
+        <rect x="30" y="70" width="160" height="20" rx="3" fill="#d4a574"/>
+        <rect x="30" y="100" width="120" height="20" rx="3" fill="#d4a574"/>
+        <rect x="30" y="132" width="200" height="5" rx="1" fill="#fff" opacity="0.5"/>
+        <rect x="30" y="144" width="160" height="5" rx="1" fill="#fff" opacity="0.5"/>
+        <rect x="30" y="170" width="90" height="22" rx="11" fill="#d4a574"/>
+        <!-- Plate illustration -->
+        <circle cx="310" cy="125" r="55" fill="#d4a574" opacity="0.15"/>
+        <circle cx="310" cy="125" r="40" fill="#3d2418"/>
+        <circle cx="310" cy="125" r="28" fill="#8b4513" opacity="0.8"/>
+        <circle cx="305" cy="120" r="6" fill="#d4a574"/>
+        <circle cx="318" cy="128" r="5" fill="#c94a4a"/>
+        <circle cx="308" cy="134" r="4" fill="#4a7c3a"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Restaurant</span>
+      <h3>Elegant Dining</h3>
+      <p>Warm, atmospheric design that captures the mood of your restaurant. Menu integration and reservations built in.</p>
+      <div class="design-features">
+        <span class="feature-chip">Online menu</span>
+        <span class="feature-chip">Reservations</span>
+        <span class="feature-chip">Gallery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 5: Blog / Magazine -->
+  <div class="design-card" data-category="blog">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="240" fill="#fff"/>
+        <!-- Header -->
+        <rect x="0" y="0" width="400" height="50" fill="#fff"/>
+        <line x1="0" y1="50" x2="400" y2="50" stroke="#e5e5e5"/>
+        <rect x="160" y="22" width="80" height="7" rx="2" fill="#1a1a1a"/>
+        <circle cx="30" cy="25" r="10" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <!-- Featured article -->
+        <rect x="20" y="68" width="200" height="150" rx="6" fill="#f5e6d3"/>
+        <rect x="35" y="180" width="80" height="6" rx="2" fill="#c94a4a"/>
+        <rect x="35" y="192" width="140" height="10" rx="2" fill="#1a1a1a"/>
+        <rect x="35" y="207" width="100" height="4" rx="1" fill="#64748b"/>
+        <!-- Sidebar articles -->
+        <rect x="240" y="68" width="140" height="44" rx="4" fill="#f8f8f8"/>
+        <rect x="250" y="78" width="50" height="24" rx="3" fill="#f5e6d3"/>
+        <rect x="310" y="82" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="310" y="92" width="45" height="4" rx="1" fill="#64748b"/>
+        <rect x="240" y="120" width="140" height="44" rx="4" fill="#f8f8f8"/>
+        <rect x="250" y="130" width="50" height="24" rx="3" fill="#d8e6d3"/>
+        <rect x="310" y="134" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="310" y="144" width="45" height="4" rx="1" fill="#64748b"/>
+        <rect x="240" y="172" width="140" height="44" rx="4" fill="#f8f8f8"/>
+        <rect x="250" y="182" width="50" height="24" rx="3" fill="#e6d3d3"/>
+        <rect x="310" y="186" width="60" height="5" rx="1" fill="#1a1a1a"/>
+        <rect x="310" y="196" width="45" height="4" rx="1" fill="#64748b"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Blog</span>
+      <h3>Editorial Magazine</h3>
+      <p>Clean, readable layout designed for content creators, bloggers, and publications who take writing seriously.</p>
+      <div class="design-features">
+        <span class="feature-chip">Featured posts</span>
+        <span class="feature-chip">Categories</span>
+        <span class="feature-chip">Newsletter</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 6: Service Business -->
+  <div class="design-card" data-category="business">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bg6" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f0fdf4"/>
+            <stop offset="100%" stop-color="#dcfce7"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="240" fill="url(#bg6)"/>
+        <!-- Nav -->
+        <rect x="20" y="20" width="360" height="26" rx="13" fill="#fff"/>
+        <circle cx="36" cy="33" r="5" fill="#16a34a"/>
+        <rect x="48" y="30" width="50" height="6" rx="2" fill="#14532d"/>
+        <rect x="310" y="27" width="60" height="12" rx="6" fill="#16a34a"/>
+        <!-- Headline -->
+        <rect x="30" y="72" width="220" height="14" rx="3" fill="#14532d"/>
+        <rect x="30" y="92" width="180" height="14" rx="3" fill="#14532d"/>
+        <rect x="30" y="118" width="180" height="5" rx="1" fill="#4b5563"/>
+        <rect x="30" y="128" width="140" height="5" rx="1" fill="#4b5563"/>
+        <!-- Trust indicators -->
+        <rect x="30" y="160" width="90" height="50" rx="6" fill="#fff"/>
+        <circle cx="50" cy="180" r="8" fill="#16a34a" opacity="0.2"/>
+        <path d="M45 180 l5 5 l10 -10" stroke="#16a34a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="40" y="196" width="60" height="4" rx="1" fill="#14532d"/>
+        <rect x="130" y="160" width="90" height="50" rx="6" fill="#fff"/>
+        <circle cx="150" cy="180" r="8" fill="#16a34a" opacity="0.2"/>
+        <path d="M145 180 l5 5 l10 -10" stroke="#16a34a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="140" y="196" width="60" height="4" rx="1" fill="#14532d"/>
+        <rect x="230" y="160" width="90" height="50" rx="6" fill="#fff"/>
+        <circle cx="250" cy="180" r="8" fill="#16a34a" opacity="0.2"/>
+        <path d="M245 180 l5 5 l10 -10" stroke="#16a34a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="240" y="196" width="60" height="4" rx="1" fill="#14532d"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Business</span>
+      <h3>Local Services</h3>
+      <p>Trust-building layout for contractors, consultants, and local businesses. Built to turn visitors into leads.</p>
+      <div class="design-features">
+        <span class="feature-chip">Lead form</span>
+        <span class="feature-chip">Trust badges</span>
+        <span class="feature-chip">Service areas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 7: Personal Portfolio -->
+  <div class="design-card" data-category="portfolio">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="240" fill="#fef9f3"/>
+        <!-- Nav -->
+        <rect x="30" y="22" width="40" height="6" rx="2" fill="#1a1a1a"/>
+        <rect x="300" y="20" width="25" height="10" rx="5" fill="#1a1a1a" opacity="0.08"/>
+        <rect x="330" y="20" width="25" height="10" rx="5" fill="#1a1a1a" opacity="0.08"/>
+        <!-- Avatar -->
+        <circle cx="200" cy="90" r="30" fill="#fbbf24"/>
+        <circle cx="200" cy="82" r="10" fill="#78350f"/>
+        <path d="M175 100 Q200 115 225 100" stroke="#78350f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Name -->
+        <rect x="140" y="135" width="120" height="14" rx="3" fill="#1a1a1a"/>
+        <rect x="155" y="155" width="90" height="6" rx="2" fill="#78350f"/>
+        <!-- Skills -->
+        <rect x="70" y="185" width="60" height="22" rx="11" fill="#fff" stroke="#e5e5e5"/>
+        <rect x="140" y="185" width="60" height="22" rx="11" fill="#fff" stroke="#e5e5e5"/>
+        <rect x="210" y="185" width="60" height="22" rx="11" fill="#fff" stroke="#e5e5e5"/>
+        <rect x="280" y="185" width="60" height="22" rx="11" fill="#fbbf24"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Portfolio</span>
+      <h3>Personal Brand</h3>
+      <p>Friendly, approachable design centered around you. Perfect for freelancers, coaches, and solo creators.</p>
+      <div class="design-features">
+        <span class="feature-chip">About section</span>
+        <span class="feature-chip">Skill tags</span>
+        <span class="feature-chip">Testimonials</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 8: Landing Page -->
+  <div class="design-card" data-category="business">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bg8" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#7c3aed"/>
+            <stop offset="100%" stop-color="#a855f7"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="240" fill="url(#bg8)"/>
+        <!-- Decorative blobs -->
+        <circle cx="350" cy="40" r="40" fill="#fff" opacity="0.1"/>
+        <circle cx="50" cy="200" r="60" fill="#fff" opacity="0.08"/>
+        <!-- Nav -->
+        <rect x="30" y="22" width="50" height="6" rx="2" fill="#fff"/>
+        <rect x="315" y="20" width="55" height="10" rx="5" fill="#fff"/>
+        <!-- Hero -->
+        <rect x="60" y="70" width="280" height="14" rx="3" fill="#fff"/>
+        <rect x="90" y="94" width="220" height="14" rx="3" fill="#fff"/>
+        <rect x="70" y="120" width="260" height="5" rx="1" fill="#fff" opacity="0.7"/>
+        <rect x="90" y="132" width="220" height="5" rx="1" fill="#fff" opacity="0.7"/>
+        <!-- CTA -->
+        <rect x="130" y="160" width="140" height="30" rx="15" fill="#fff"/>
+        <rect x="170" y="170" width="60" height="10" rx="2" fill="#7c3aed"/>
+        <!-- Social proof -->
+        <rect x="120" y="210" width="160" height="8" rx="2" fill="#fff" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Business</span>
+      <h3>Landing Page</h3>
+      <p>Single-page, conversion-focused design for product launches, campaigns, and lead generation.</p>
+      <div class="design-features">
+        <span class="feature-chip">Single page</span>
+        <span class="feature-chip">Email capture</span>
+        <span class="feature-chip">Social proof</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 9: Coffee Shop -->
+  <div class="design-card" data-category="restaurant">
+    <div class="design-preview">
+      <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="400" height="240" fill="#f5ede0"/>
+        <!-- Nav -->
+        <rect x="30" y="22" width="55" height="7" rx="2" fill="#5d3a1a"/>
+        <rect x="280" y="20" width="25" height="10" rx="5" fill="#5d3a1a" opacity="0.15"/>
+        <rect x="310" y="20" width="25" height="10" rx="5" fill="#5d3a1a" opacity="0.15"/>
+        <rect x="340" y="20" width="35" height="10" rx="5" fill="#5d3a1a"/>
+        <!-- Hero text -->
+        <rect x="30" y="80" width="170" height="18" rx="3" fill="#5d3a1a"/>
+        <rect x="30" y="106" width="130" height="18" rx="3" fill="#5d3a1a"/>
+        <rect x="30" y="138" width="180" height="5" rx="1" fill="#8b6540"/>
+        <rect x="30" y="150" width="150" height="5" rx="1" fill="#8b6540"/>
+        <rect x="30" y="178" width="90" height="22" rx="11" fill="#5d3a1a"/>
+        <!-- Coffee cup illustration -->
+        <ellipse cx="310" cy="165" rx="55" ry="12" fill="#5d3a1a" opacity="0.2"/>
+        <path d="M260 95 L360 95 L350 160 L270 160 Z" fill="#fff" stroke="#5d3a1a" stroke-width="2"/>
+        <path d="M360 105 Q385 105 385 125 Q385 145 360 145" fill="none" stroke="#5d3a1a" stroke-width="2"/>
+        <ellipse cx="310" cy="95" rx="50" ry="8" fill="#5d3a1a"/>
+        <ellipse cx="310" cy="92" rx="42" ry="6" fill="#c49b6c"/>
+        <!-- Steam -->
+        <path d="M295 70 Q300 60 295 50" stroke="#8b6540" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <path d="M315 75 Q320 65 315 55" stroke="#8b6540" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <path d="M325 70 Q330 60 325 50" stroke="#8b6540" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="design-info">
+      <span class="design-tag">Restaurant</span>
+      <h3>Cozy Café</h3>
+      <p>Warm, welcoming vibe perfect for coffee shops, bakeries, and neighborhood eateries with personality.</p>
+      <div class="design-features">
+        <span class="feature-chip">Menu</span>
+        <span class="feature-chip">Hours &amp; location</span>
+        <span class="feature-chip">Instagram feed</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== STYLE GUIDE ===== -->
+<section class="style-guide">
+  <div class="style-inner">
+    <div class="section-label">Visual Styles</div>
+    <h2>Pick a Color Mood</h2>
+    <p class="section-desc">Your color palette sets the tone for your entire site. Here are some popular directions — we can always mix, match, or build a custom palette just for you.</p>
+
+    <div class="style-grid">
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#0db4c4"></div>
+          <div class="swatch" style="background:#06d6a0"></div>
+          <div class="swatch" style="background:#eaf7f9"></div>
+          <div class="swatch" style="background:#1a2b30"></div>
+        </div>
+        <h3>Fresh &amp; Modern</h3>
+        <p>Clean teals and greens with soft backgrounds. Feels trustworthy, current, and approachable.</p>
+        <div class="use-case">Tech · SaaS · Healthcare</div>
+      </div>
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#1a1a1a"></div>
+          <div class="swatch" style="background:#d4ff3a"></div>
+          <div class="swatch" style="background:#3a3a4a"></div>
+          <div class="swatch" style="background:#fff"></div>
+        </div>
+        <h3>Bold &amp; Creative</h3>
+        <p>Dark backgrounds with electric accent colors. Makes a strong statement and feels premium.</p>
+        <div class="use-case">Portfolio · Agency · Fashion</div>
+      </div>
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#5d3a1a"></div>
+          <div class="swatch" style="background:#d4a574"></div>
+          <div class="swatch" style="background:#f5ede0"></div>
+          <div class="swatch" style="background:#c94a4a"></div>
+        </div>
+        <h3>Warm &amp; Inviting</h3>
+        <p>Earthy browns, warm creams, and rich reds. Feels cozy, handcrafted, and human.</p>
+        <div class="use-case">Café · Boutique · Artisan</div>
+      </div>
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#3b82f6"></div>
+          <div class="swatch" style="background:#1e3a8a"></div>
+          <div class="swatch" style="background:#dbeafe"></div>
+          <div class="swatch" style="background:#fff"></div>
+        </div>
+        <h3>Professional Blue</h3>
+        <p>Classic corporate blues balanced with white space. Conveys stability, trust, and expertise.</p>
+        <div class="use-case">Finance · Legal · Consulting</div>
+      </div>
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#16a34a"></div>
+          <div class="swatch" style="background:#dcfce7"></div>
+          <div class="swatch" style="background:#14532d"></div>
+          <div class="swatch" style="background:#fbbf24"></div>
+        </div>
+        <h3>Natural &amp; Organic</h3>
+        <p>Earthy greens with sunny highlights. Feels wholesome, sustainable, and down-to-earth.</p>
+        <div class="use-case">Wellness · Outdoor · Food</div>
+      </div>
+
+      <div class="style-card">
+        <div class="palette-row">
+          <div class="swatch" style="background:#7c3aed"></div>
+          <div class="swatch" style="background:#a855f7"></div>
+          <div class="swatch" style="background:#fbbf24"></div>
+          <div class="swatch" style="background:#fff"></div>
+        </div>
+        <h3>Vibrant &amp; Playful</h3>
+        <p>Bold purples and bright accents. Energetic, youthful, and hard to ignore.</p>
+        <div class="use-case">Startup · Events · Entertainment</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section">
+  <div class="section-label">Features You Can Add</div>
+  <h2>Build With Exactly What You Need</h2>
+  <p class="section-desc">Mix and match features to make your site work harder for you. Every feature below can be added to any package.</p>
+
+  <div class="features-grid">
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Contact Forms</h4>
+        <p>Custom forms that send directly to your email. No spam, no hassle.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Email Signup</h4>
+        <p>Collect visitor emails to build a mailing list. Integrates with Mailchimp, ConvertKit, etc.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Shopping Cart</h4>
+        <p>Full e-commerce functionality with checkout, shipping, and payments.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Payment Processing</h4>
+        <p>Stripe, PayPal, or Square integration for accepting payments securely.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Booking &amp; Scheduling</h4>
+        <p>Let clients book appointments or reservations directly on your site.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Search &amp; Filters</h4>
+        <p>Help visitors find exactly what they need with smart search functionality.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Reviews &amp; Testimonials</h4>
+        <p>Showcase what customers are saying with dynamic review widgets.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Photo Gallery</h4>
+        <p>Beautiful image galleries with lightbox, slideshow, or grid layouts.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/>
+          <line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>SEO Optimization</h4>
+        <p>Built-in SEO best practices to help you rank higher in Google searches.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Dark Mode Toggle</h4>
+        <p>Let visitors switch between light and dark themes. Modern and user-friendly.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 01-3.46 0"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Live Chat Widget</h4>
+        <p>Answer customer questions in real-time with integrated chat support.</p>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+      </div>
+      <div class="feature-text">
+        <h4>Membership / Login</h4>
+        <p>Create gated content, member areas, or user accounts with secure login.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>See Something You Like?</h2>
+    <p>Let's bring your vision to life. Start with a free sample, no commitment required.</p>
+    <a href="get-started.html" class="btn-white">
+      Get Started
+      <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-socials">
+      <a href="mailto:evostudiosllc@gmail.com" class="social-link" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Evolution Studios LLC. All rights reserved.</p>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+    <polyline points="5 12 12 5 19 12"/>
+  </svg>
+</button>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Mobile toggle
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  links.classList.toggle('open');
+});
+
+// Filter tabs
+const tabs = document.querySelectorAll('.filter-tab');
+const cards = document.querySelectorAll('.design-card');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+/* ===== Scroll Progress Bar ===== */
+
+const progressBar = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (window.scrollY / docHeight) * 100 + '%';
+  /* ===== Back to Top Button ===== */
+/* Shows the button once user has scrolled past 400px. 
+   Clicking scrolls smoothly back to the top. */
+
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+});
+</script>
+
+</body>
+</html>
