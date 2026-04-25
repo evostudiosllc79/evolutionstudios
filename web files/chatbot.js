@@ -132,8 +132,8 @@ document.body.appendChild(bubble);
 const widget = document.createElement('div');
 widget.id = 'chat-widget';
 widget.innerHTML = `
-  <div id="chat-header">
-    <span>💬 Chat with AI</span>
+ <div id="chat-header">
+    <img src="evolution_studios_logo.png" style="height:28px;object-fit:contain;">
     <span id="chat-close">✕</span>
   </div>
   <div id="chat-messages">
