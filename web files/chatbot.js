@@ -126,7 +126,7 @@ document.head.appendChild(style);
 // Inject HTML
 const bubble = document.createElement('div');
 bubble.id = 'chat-bubble';
-bubble.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+bubble.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#fff"/><path d="M8 22V10h10.5a4.5 4.5 0 010 9H12.5" stroke="#0db4c4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 16h7a4 4 0 010 8H8" stroke="#0db4c4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/></svg>`;
 document.body.appendChild(bubble);
 
 const widget = document.createElement('div');
