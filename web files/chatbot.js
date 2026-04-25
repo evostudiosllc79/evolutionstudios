@@ -171,7 +171,7 @@ async function widgetSend() {
   messages.scrollTop = messages.scrollHeight;
 
   try {
-    const response = await fetch('https://occasion-caps-probably-measurements.trycloudflare.com/api/chat', {
+    const response = await fetch('https://college-enabling-ment-dot.trycloudflare.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
