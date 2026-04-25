@@ -189,7 +189,7 @@ async function widgetSend() {
     const data = await response.json();
     aiMsg.textContent = data.message.content;
   } catch {
-    aiMsg.textContent = 'Sorry, I am offline right now.';
+    aiMsg.textContent = 'Our AI assistant is currently offline. Check back soon or contact us at evostudiosllc@gmail.com!';
   }
   messages.scrollTop = messages.scrollHeight;
 }
